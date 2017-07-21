@@ -23,5 +23,14 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
-  }
+  },
+  "collectCoverageFrom" : [
+    "**/*.js",
+    "!**/node_modules/**",
+    "!**/vendor/**",
+    "!**/index.js",
+    "!**/initialState.js",
+    "!**/assets/**",
+    "!**/ActionTypes.js"
+  ]
 }

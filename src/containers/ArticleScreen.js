@@ -6,7 +6,7 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as ArticleActions from '../actions/ArticleActions';
 //Components
-import Articles from '../components/article/Articles';
+import Articles from '../components/articles/Articles';
 
 class ArticleScreen extends Component {
     constructor(props, context) {
