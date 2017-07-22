@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "axios": "^0.16.2",
     "bootstrap": "4.0.0-alpha.6",
     "prop-types": "^15.5.10",
     "react": "^15.6.1",
@@ -24,7 +25,7 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
-  "collectCoverageFrom" : [
+  "collectCoverageFrom": [
     "**/*.js",
     "!**/node_modules/**",
     "!**/vendor/**",
@@ -32,5 +33,13 @@
     "!**/initialState.js",
     "!**/assets/**",
     "!**/ActionTypes.js"
-  ]
+  ],
+  "coverageThreshold": {
+    "global": {
+      "branches": 90,
+      "functions": 90,
+      "lines": 90,
+      "statements": 90
+    }
+  }
 }

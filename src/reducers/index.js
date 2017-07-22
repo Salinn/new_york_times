@@ -1,10 +1,10 @@
 //Redux
 import { combineReducers } from 'redux';
 //Reducers
-import article from './ArticleReducer';
+import articles from './ArticleReducer';
 
 const rootReducer = combineReducers({
-    article,
+    articles,
 });
 
 export default rootReducer;
