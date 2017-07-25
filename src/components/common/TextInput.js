@@ -8,7 +8,7 @@ import { validationColor } from '../../utils/validator';
 
 const TextInput = ( { onChange, fieldInfo } ) => {
     return (
-        <Col sm={ 6 }>
+        <Col xs={ 12 } sm={ 6 }>
             <FormGroup row color={ validationColor( fieldInfo.isError ) }>
                 <Col sm={ 3 }>
                     <Label for={ fieldInfo.name } className="float-right labelTitle">{ fieldInfo.label }</Label>

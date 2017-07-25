@@ -9,7 +9,8 @@ const API_VERSION = '/v2';
 export const ARTICLE_ENDPOINT = DOMAIN_NAME + API_VERSION + '/articlesearch.json';
 
 const headers = {
-    'Content-Type': 'application/x-www-form-urlencoded'
+    'Content-Type': 'application/x-www-form-urlencoded',
+    'X-Frame-Options': 'X-Frame-Options https://api.nytimes.com/'
 };
 
 export const fetchArticles = ({ searchFields }) => {
