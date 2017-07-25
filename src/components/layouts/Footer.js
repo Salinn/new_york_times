@@ -1,9 +1,9 @@
 //React
-import React, {PropTypes} from 'react';
+import React from 'react';
 import {} from 'prop-types';
 //Component
 
-const Footer = (props) => {
+const Footer = () => {
     return (
         <footer>
             footer

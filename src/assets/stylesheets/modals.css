@@ -1,0 +1,8 @@
+.customModalSize {
+    max-height: 90vh;
+    max-width: 90vw;
+}
+
+.modal-content {
+    height: 90vh;
+}

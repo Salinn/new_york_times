@@ -1,9 +1,9 @@
 //React
-import React, {PropTypes} from 'react';
+import React from 'react';
 import {} from 'prop-types';
 //Component
 
-const Header = (props) => {
+const Header = () => {
     return (
         <div>
             header

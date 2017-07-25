@@ -1,21 +1,25 @@
 //React
-import React, {PropTypes} from 'react';
+import React from 'react';
 import {} from 'prop-types';
 //Component
-import { Button } from 'reactstrap';
+import { Button, Row } from 'reactstrap';
+import Article from './Article';
+import Search from './Search';
+import FullArticle from './FullArticle'
 
-const Articles = ({ stories, nextSetOfArticles, lastSetOfArticles }) => {
+const Articles = ({ articles, nextSetOfArticles, lastSetOfArticles, toggleFullArticle }) => {
     return (
         <div>
-            <h1>
-                articles
-            </h1>
-
+            <h1>Articles</h1>
+            <Search search={ articles.search } />
             <Button onClick={ lastSetOfArticles }>Last Pages</Button>
             <Button onClick={ nextSetOfArticles }>Next Pages</Button>
-            { stories.map( article => {
-                return (<div><h4>{ article.headline.print_headline }</h4><p>{ article.snippet }</p></div>)
-            })}
+            <Row>
+                { articles.stories.map( (article, index) => {
+                    return <Article key={ index } article={ article } toggle={ toggleFullArticle } />
+                })}
+            </Row>
+            <FullArticle web_url={ articles.fullArticle.web_url } isOpen={ articles.fullArticle.isOpen } toggle={ toggleFullArticle } />
         </div>
     );
 };

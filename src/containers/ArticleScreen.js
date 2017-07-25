@@ -1,5 +1,5 @@
 //React
-import React, {Component, PropTypes} from 'react';
+import React, { Component } from 'react';
 import {} from 'prop-types';
 //Redux
 import {connect} from 'react-redux';
@@ -14,28 +14,33 @@ class ArticleScreen extends Component {
 
         this.nextSetOfArticles = this.nextSetOfArticles.bind(this);
         this.lastSetOfArticles = this.lastSetOfArticles.bind(this);
+        this.toggleFullArticle = this.toggleFullArticle.bind(this);
     }
 
     componentDidMount() {
-        console.log(this.props.articles);
-        this.props.actions.fetchArticles({ page: this.props.articles.search.page });
+        this.props.actions.fetchArticles({ search: this.props.articles.search });
     }
 
     nextSetOfArticles() {
-        this.props.actions.nextSetOfArticles({ page: this.props.articles.search.page });
+        this.props.actions.nextSetOfArticles({ search: this.props.articles.search });
     }
 
     lastSetOfArticles() {
-        this.props.actions.lastSetOfArticles({ page: this.props.articles.search.page });
+        this.props.actions.lastSetOfArticles({ search: this.props.articles.search });
+    }
+
+    toggleFullArticle(web_url) {
+        this.props.actions.toggleFullArticle({ web_url });
     }
 
     render() {
         const { articles } = this.props;
 
         return (
-            <Articles stories={ articles.stories }
+            <Articles articles={ articles }
                       nextSetOfArticles={ this.nextSetOfArticles }
-                      lastSetOfArticles={ this.lastSetOfArticles } />
+                      lastSetOfArticles={ this.lastSetOfArticles }
+                      toggleFullArticle={ this.toggleFullArticle }/>
         );
     }
 }

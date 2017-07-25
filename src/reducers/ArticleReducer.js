@@ -13,6 +13,13 @@ export default function ArticleReducer(state = initialState.articles, action) {
             return { ...state };
         case  types.SET_PAGE:
             return { ...state, search: { ...state.search, page: action.page } };
+        case types.TOGGLE_FULL_ARTICLE:
+            return {
+                ...state,
+                fullArticle: {
+                    ...state.fullArticle,
+                    web_url: action.web_url,
+                    isOpen: !state.fullArticle.isOpen } };
         default:
             return { ...state };
     }
