@@ -8,8 +8,12 @@ export const DOMAIN_NAME = 'https://api.nytimes.com/svc/search';
 const API_VERSION = '/v2';
 export const ARTICLE_ENDPOINT = DOMAIN_NAME + API_VERSION + '/articlesearch.json';
 
+const headers = {
+    'Content-Type': 'application/x-www-form-urlencoded'
+};
+
 export const fetchArticles = ({ searchFields }) => {
-    return axios.get(ARTICLE_ENDPOINT + getParams({ searchFields }));
+    return axios.get(ARTICLE_ENDPOINT + getParams({ searchFields }), headers);
 };
 
 export const getParams = ({ searchFields }) => {

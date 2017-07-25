@@ -21,17 +21,15 @@ export const fetchArticles = ({ searchFields }) => async dispatch => {
     }
 };
 
-export const nextSetOfArticles = ({ search }) => dispatch => {
-    const newPage = (search.page < 120) ? search.page + 1 : 120;
+export const nextSetOfArticles = ({ searchFields }) => dispatch => {
+    const newPage = (searchFields.page.value < 120) ? searchFields.page.value + 1 : 120;
 
     dispatch(setPage({ page: newPage }));
-    dispatch(fetchArticles({ search }));
 };
-export const lastSetOfArticles = ({ search }) => dispatch => {
-    const newPage = (search.page > 0) ? search.page - 1 : 0;
+export const lastSetOfArticles = ({ searchFields }) => dispatch => {
+    const newPage = (searchFields.page.value > 0) ? searchFields.page.value - 1 : 0;
 
     dispatch(setPage({ page: newPage }));
-    dispatch(fetchArticles({ search }));
 };
 
 export const setPage = ({ page }) => {

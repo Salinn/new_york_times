@@ -16,6 +16,10 @@ const Articles = ({ articles, nextSetOfArticles, lastSetOfArticles, toggleFullAr
                     searchFields={ articles.searchFields }
                     onChange={ onUserInput } />
 
+            <PaginationButtons nextSetOfArticles={ nextSetOfArticles }
+                               lastSetOfArticles={ lastSetOfArticles } />
+
+            <hr />
             <h2 className="articleTag">Articles</h2>
 
             <Row>

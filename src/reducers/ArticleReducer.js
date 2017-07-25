@@ -12,7 +12,11 @@ export default function ArticleReducer(state = initialState.articles, action) {
         case types.FETCH_ARTICLES_FAILED:
             return { ...state };
         case  types.SET_PAGE:
-            return { ...state, search: { ...state.search, page: action.page } };
+            return {
+                ...state,
+                searchFields: {
+                    ...state.searchFields,
+                    page: { ...state.searchFields.page, value: action.page } } };
         case types.TOGGLE_FULL_ARTICLE:
             return {
                 ...state,
@@ -29,8 +33,7 @@ export default function ArticleReducer(state = initialState.articles, action) {
                         ...state.searchFields[action.name],
                         value: action.value,
                         isError: action.isError,
-                        errorMessage: action.errorMessage,
-                    } } };
+                        errorMessage: action.errorMessage, } } };
         default:
             return { ...state };
     }
