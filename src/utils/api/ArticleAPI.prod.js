@@ -1,19 +1,28 @@
 //Used for making https requests
 import axios from 'axios';
+//Used for dates
+import moment from 'moment';
+
 //Used for defining the API Routes Available
 export const DOMAIN_NAME = 'https://api.nytimes.com/svc/search';
 const API_VERSION = '/v2';
 export const ARTICLE_ENDPOINT = DOMAIN_NAME + API_VERSION + '/articlesearch.json';
 
-export const fetchArticles = ({ search }) => {
-    return axios.get(ARTICLE_ENDPOINT + getParams({ search }));
+export const fetchArticles = ({ searchFields }) => {
+    return axios.get(ARTICLE_ENDPOINT + getParams({ searchFields }));
 };
 
-export const getParams = ({ search }) => {
+export const getParams = ({ searchFields }) => {
     let params = '?';
-    const keys = Object.keys(search);
+    const keys = Object.keys(searchFields);
 
-    keys.forEach( key => { params += `&${key}=${search[key]}` });
+    keys.forEach( key => {
 
+        if (key === 'end_date') {
+            params += `&${key}=${moment(searchFields[key].value).format('YYYYMMDD')}`
+        } else {
+            params += `&${key}=${searchFields[key].value}`
+        }
+    });
     return params
 };

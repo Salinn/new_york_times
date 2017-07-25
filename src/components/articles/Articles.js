@@ -2,24 +2,35 @@
 import React from 'react';
 import {} from 'prop-types';
 //Component
-import { Button, Row } from 'reactstrap';
+import { Row, } from 'reactstrap';
 import Article from './Article';
 import Search from './Search';
 import FullArticle from './FullArticle'
+import PaginationButtons from './PaginationButtons';
+import '../../assets/stylesheets/articles.css'
 
-const Articles = ({ articles, nextSetOfArticles, lastSetOfArticles, toggleFullArticle }) => {
+const Articles = ({ articles, nextSetOfArticles, lastSetOfArticles, toggleFullArticle, onUserInput }) => {
     return (
         <div>
-            <h1>Articles</h1>
-            <Search search={ articles.search } />
-            <Button onClick={ lastSetOfArticles }>Last Pages</Button>
-            <Button onClick={ nextSetOfArticles }>Next Pages</Button>
+            <Search searchMeta={ articles.searchMeta }
+                    searchFields={ articles.searchFields }
+                    onChange={ onUserInput } />
+
+            <h2 className="articleTag">Articles</h2>
+
             <Row>
                 { articles.stories.map( (article, index) => {
                     return <Article key={ index } article={ article } toggle={ toggleFullArticle } />
                 })}
             </Row>
-            <FullArticle web_url={ articles.fullArticle.web_url } isOpen={ articles.fullArticle.isOpen } toggle={ toggleFullArticle } />
+
+            <FullArticle web_url={ articles.fullArticle.web_url }
+                         isOpen={ articles.fullArticle.isOpen }
+                         toggle={ toggleFullArticle } />
+
+            <hr />
+            <PaginationButtons nextSetOfArticles={ nextSetOfArticles }
+                               lastSetOfArticles={ lastSetOfArticles } />
         </div>
     );
 };

@@ -15,23 +15,39 @@ class ArticleScreen extends Component {
         this.nextSetOfArticles = this.nextSetOfArticles.bind(this);
         this.lastSetOfArticles = this.lastSetOfArticles.bind(this);
         this.toggleFullArticle = this.toggleFullArticle.bind(this);
+        this.onUserInput = this.onUserInput.bind(this);
     }
 
     componentDidMount() {
-        this.props.actions.fetchArticles({ search: this.props.articles.search });
+        this.props.actions.fetchArticles({ searchFields: this.props.articles.searchFields });
+    }
+
+    componentDidUpdate(prevProps, prevState) {
+        if(prevProps.articles.searchFields !== this.props.articles.searchFields) {
+            this.props.actions.fetchArticles({ searchFields: this.props.articles.searchFields });
+        }
     }
 
     nextSetOfArticles() {
-        this.props.actions.nextSetOfArticles({ search: this.props.articles.search });
+        this.props.actions.nextSetOfArticles({ searchFields: this.props.articles.searchFields });
     }
 
     lastSetOfArticles() {
-        this.props.actions.lastSetOfArticles({ search: this.props.articles.search });
+        this.props.actions.lastSetOfArticles({ searchFields: this.props.articles.searchFields });
     }
 
     toggleFullArticle(web_url) {
         this.props.actions.toggleFullArticle({ web_url });
     }
+
+    onUserInput(event) {
+        const eventInfo = {
+            name: event.target.name,
+            value: event.target.value,
+            pattern: event.target.pattern,
+        };
+        this.props.actions.inputChanged(eventInfo);
+    };
 
     render() {
         const { articles } = this.props;
@@ -40,7 +56,8 @@ class ArticleScreen extends Component {
             <Articles articles={ articles }
                       nextSetOfArticles={ this.nextSetOfArticles }
                       lastSetOfArticles={ this.lastSetOfArticles }
-                      toggleFullArticle={ this.toggleFullArticle }/>
+                      toggleFullArticle={ this.toggleFullArticle }
+                      onUserInput={ this.onUserInput } />
         );
     }
 }

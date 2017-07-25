@@ -2,15 +2,21 @@
 import React from 'react';
 import {} from 'prop-types';
 //Component
-import { Input } from 'reactstrap';
+import TextInput from '../common/TextInput';
+import { Row } from 'reactstrap';
 
-const Search = ({ search }) => {
-    const keys = Object.keys(search);
+const Search = ({ onChange, searchMeta, searchFields }) => {
+    const keys = Object.keys(searchMeta).filter(key => key !== 'api-key');
 
     return (
         <div>
             <h2>Search</h2>
-            { keys.map( key => { return key })}
+            <Row>
+                { keys.map( key => {
+                    let fieldInfo = { ...searchMeta[key], ...searchFields[key] };
+                    return <TextInput key={key} onChange={ onChange } fieldInfo={ fieldInfo } />
+                })}
+            </Row>
         </div>
     );
 };

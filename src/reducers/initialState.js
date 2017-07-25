@@ -1,17 +1,49 @@
 import moment from 'moment';
+import * as patterns from '../utils/types/patternTypes'
 
 export default {
     articles: {
         stories: [],
-        search: {
-            'api-key': 'a8457610b68381085a3fff38d6a36337:6:74255139',
-            page: 0,
-            end_date: moment().format('YYYYMMDD'),
+        searchMeta: {
+            'api-key': {
+                name: 'api-key',
+                label: 'Api Key',
+                pattern: patterns.DEFAULT,
+                type: 'text',
+            },
+            page: {
+                name: 'page',
+                label: 'Page Number',
+                pattern: patterns.DEFAULT,
+                type: 'text',
+            },
+            end_date: {
+                name: 'end_date',
+                label: 'Date',
+                pattern: patterns.DATE,
+                type: 'date',
+            },
         },
         fullArticle: {
             isOpen: false,
             web_url: '',
         },
-
+        searchFields: {
+            'api-key': {
+                value: 'a8457610b68381085a3fff38d6a36337:6:74255139',
+                isError: null,
+                errorMessage: '',
+            },
+            page: {
+                value: 0,
+                isError: null,
+                errorMessage: '',
+            },
+            end_date: {
+                value: moment().format('YYYY-MM-DD'),
+                isError: null,
+                errorMessage: '',
+            },
+        }
     }
 }

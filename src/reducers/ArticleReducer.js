@@ -20,6 +20,17 @@ export default function ArticleReducer(state = initialState.articles, action) {
                     ...state.fullArticle,
                     web_url: action.web_url,
                     isOpen: !state.fullArticle.isOpen } };
+        case types.INPUT_CHANGED:
+            return {
+                ...state,
+                searchFields: {
+                    ...state.searchFields,
+                    [action.name]: {
+                        ...state.searchFields[action.name],
+                        value: action.value,
+                        isError: action.isError,
+                        errorMessage: action.errorMessage,
+                    } } };
         default:
             return { ...state };
     }

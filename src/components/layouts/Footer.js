@@ -1,12 +1,14 @@
 //React
 import React from 'react';
 import {} from 'prop-types';
-//Component
+//Styling
+import '../../assets/stylesheets/footer.css'
 
 const Footer = () => {
     return (
-        <footer>
-            footer
+        <footer className="footerContent">
+            <hr />
+            This website was created by Paul Darragh
         </footer>
     );
 };
