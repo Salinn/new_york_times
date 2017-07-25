@@ -7,7 +7,7 @@ import { Col, Card, CardTitle, CardText, Button, } from 'reactstrap';
 
 const Article = ({ article, toggle }) => {
     return  (
-        <Col sm="6">
+        <Col xs="12" sm="6">
             <Card block>
                 <CardTitle>{ article.headline.print_headline }</CardTitle>
                 <i>{ moment(article.pub_date).format('MM/DD/YYYY h:mm a') }</i>
