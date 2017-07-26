@@ -8,7 +8,7 @@ import { Row } from 'reactstrap';
 import '../../assets/stylesheets/articles.css'
 
 const Search = ({ onChange, searchMeta, searchFields }) => {
-    const keys = Object.keys(searchMeta).filter(key => key !== 'api-key');
+    const keys = Object.keys(searchMeta).filter(key => key !== 'api-key' && key !== 'page');
 
     return (
         <div>

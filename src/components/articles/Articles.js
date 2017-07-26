@@ -17,7 +17,8 @@ const Articles = ({ articles, nextSetOfArticles, lastSetOfArticles, toggleFullAr
                     onChange={ onUserInput } />
 
             <PaginationButtons nextSetOfArticles={ nextSetOfArticles }
-                               lastSetOfArticles={ lastSetOfArticles } />
+                               lastSetOfArticles={ lastSetOfArticles }
+                               pageNumber={ articles.searchFields.page.value } />
 
             <hr />
             <h2 className="articleTag">Articles</h2>
@@ -34,7 +35,8 @@ const Articles = ({ articles, nextSetOfArticles, lastSetOfArticles, toggleFullAr
 
             <hr />
             <PaginationButtons nextSetOfArticles={ nextSetOfArticles }
-                               lastSetOfArticles={ lastSetOfArticles } />
+                               lastSetOfArticles={ lastSetOfArticles }
+                               pageNumber={ articles.searchFields.page.value }/>
         </div>
     );
 };

@@ -17,6 +17,12 @@ export default {
                 pattern: patterns.DEFAULT,
                 type: 'text',
             },
+            q: {
+                name: 'q',
+                label: 'Search',
+                pattern: patterns.DEFAULT,
+                type: 'text',
+            },
             end_date: {
                 name: 'end_date',
                 label: 'Date',
@@ -36,6 +42,11 @@ export default {
             },
             page: {
                 value: 0,
+                isError: null,
+                errorMessage: '',
+            },
+            q: {
+                value: '',
                 isError: null,
                 errorMessage: '',
             },

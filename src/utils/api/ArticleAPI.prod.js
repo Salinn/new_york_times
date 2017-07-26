@@ -8,13 +8,8 @@ export const DOMAIN_NAME = 'https://api.nytimes.com/svc/search';
 const API_VERSION = '/v2';
 export const ARTICLE_ENDPOINT = DOMAIN_NAME + API_VERSION + '/articlesearch.json';
 
-const headers = {
-    'Content-Type': 'application/x-www-form-urlencoded',
-    'X-Frame-Options': 'X-Frame-Options https://api.nytimes.com/'
-};
-
 export const fetchArticles = ({ searchFields }) => {
-    return axios.get(ARTICLE_ENDPOINT + getParams({ searchFields }), headers);
+    return axios.get(ARTICLE_ENDPOINT + getParams({ searchFields }));
 };
 
 export const getParams = ({ searchFields }) => {
@@ -22,10 +17,9 @@ export const getParams = ({ searchFields }) => {
     const keys = Object.keys(searchFields);
 
     keys.forEach( key => {
-
         if (key === 'end_date') {
             params += `&${key}=${moment(searchFields[key].value).format('YYYYMMDD')}`
-        } else {
+        } else if (searchFields[key].value !== '') {
             params += `&${key}=${searchFields[key].value}`
         }
     });
