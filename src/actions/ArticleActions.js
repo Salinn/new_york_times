@@ -12,11 +12,8 @@ export const fetchArticles = ({ searchFields }) => async dispatch => {
 
         const { docs } = payload.data.response;
 
-        console.log(docs);
-
         dispatch(fetchArticlesSuccess({ stories: docs }));
     } catch (error) {
-        console.log(error);
         dispatch(fetchArticlesFailed());
     }
 };
@@ -52,13 +49,8 @@ export const toggleFullArticle = ({ web_url }) => {
     return { type: types.TOGGLE_FULL_ARTICLE, web_url }
 };
 
-export const inputChanged = ({ name, value, pattern, searchFields }) => dispatch => {
+export const inputChanged = ({ name, value, pattern }) => {
     const { isError, errorMessage } = validator({ value, pattern });
-    if (name === 'page') value = isNaN(parseInt(value)) ? 0 : parseInt(value);
 
-    dispatch(changedInput({ name, value, isError, errorMessage }));
-};
-
-export const changedInput = ({ name, value, isError, errorMessage }) => {
     return { type: types.INPUT_CHANGED, name, value, isError, errorMessage }
 };

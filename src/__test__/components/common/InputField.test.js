@@ -40,6 +40,24 @@ describe('Input Fields', () => {
         expect(inputs.length).toBe(1);
     });
 
+    it('should not show an error message when the page initially loads', () => {
+        const formFeedbacks = wrapper.find('FormFeedback');
+
+        expect(formFeedbacks.length).toBe(0);
+    });
+
+    it('should show the error message when the input is invalid', () => {
+        props = {
+            ...props,
+            fieldInfo: { ...props.fieldInfo, isError: true, errorMessage: 'To many characters entered' }
+        };
+        wrapper = shallow(<InputField { ...props } />);
+
+        const formFeedbacks = wrapper.find('FormFeedback');
+
+        expect(formFeedbacks.length).toBe(1);
+    });
+
     it('should call onChange when there is user input', () => {
         wrapper.find('Input').first().simulate('change', { target: { value: '2' } });
 
