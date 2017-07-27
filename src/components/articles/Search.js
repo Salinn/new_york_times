@@ -1,8 +1,8 @@
 //React
 import React from 'react';
-import {} from 'prop-types';
+import { func, object, } from 'prop-types';
 //Component
-import TextInput from '../common/TextInput';
+import InputField from '../common/InputField';
 import { Row } from 'reactstrap';
 //CSS
 import '../../assets/stylesheets/articles.css'
@@ -12,17 +12,20 @@ const Search = ({ onChange, searchMeta, searchFields }) => {
 
     return (
         <div>
-            <h2 className="articleTag">Search</h2>
             <Row>
                 { keys.map( key => {
                     let fieldInfo = { ...searchMeta[key], ...searchFields[key] };
-                    return <TextInput key={key} onChange={ onChange } fieldInfo={ fieldInfo } />
+                    return <InputField key={key} onChange={ onChange } fieldInfo={ fieldInfo } />
                 })}
             </Row>
         </div>
     );
 };
 
-Search.PropTypes = {};
+Search.PropTypes = {
+    onChange: func.isRequired,
+    searchMeta: object.isRequired,
+    searchFields: object.isRequired,
+};
 
 export default Search

@@ -1,6 +1,6 @@
 //React
 import React from 'react';
-import {} from 'prop-types';
+import { string, bool, func, } from 'prop-types';
 //Component
 import { Button, Modal, ModalFooter } from 'reactstrap';
 //Css
@@ -17,6 +17,10 @@ const FullArticle = ({ web_url, isOpen, toggle }) => {
     );
 };
 
-FullArticle.PropTypes = {};
+FullArticle.PropTypes = {
+    web_url: string.isRequired,
+    isOpen: bool.isRequired,
+    toggle: func.isRequired,
+};
 
 export default FullArticle

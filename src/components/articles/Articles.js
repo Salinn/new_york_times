@@ -1,6 +1,6 @@
 //React
 import React from 'react';
-import {} from 'prop-types';
+import { shape, array, object, bool, string, func } from 'prop-types';
 //Component
 import { Row, } from 'reactstrap';
 import Article from './Article';
@@ -12,6 +12,8 @@ import '../../assets/stylesheets/articles.css'
 const Articles = ({ articles, nextSetOfArticles, lastSetOfArticles, toggleFullArticle, onUserInput }) => {
     return (
         <div>
+            <h2 className="articleTag">New York Time's Articles</h2>
+
             <Search searchMeta={ articles.searchMeta }
                     searchFields={ articles.searchFields }
                     onChange={ onUserInput } />
@@ -21,7 +23,6 @@ const Articles = ({ articles, nextSetOfArticles, lastSetOfArticles, toggleFullAr
                                pageNumber={ articles.searchFields.page.value } />
 
             <hr />
-            <h2 className="articleTag">Articles</h2>
 
             <Row>
                 { articles.stories.map( (article, index) => {
@@ -41,6 +42,20 @@ const Articles = ({ articles, nextSetOfArticles, lastSetOfArticles, toggleFullAr
     );
 };
 
-Articles.PropTypes = {};
+Articles.PropTypes = {
+    article: shape({
+        stories: array.isRequired,
+        searchMeta: object.isRequired,
+        fullArticle: shape({
+            isOpen: bool.isRequired,
+            web_url: string.isRequired,
+        }),
+        searchFields: object.isRequired
+    }),
+    nextSetOfArticles: func.isRequired,
+    lastSetOfArticles: func.isRequired,
+    toggleFullArticle: func.isRequired,
+    onUserInput: func.isRequired,
+};
 
 export default Articles

@@ -1,12 +1,12 @@
 //React
 import React from 'react';
-import { } from 'prop-types';
+import { func, shape, string, bool } from 'prop-types';
 //ReactStrap
 import { Col, FormGroup, Label, Input, FormFeedback } from 'reactstrap';
 //validation
 import { validationColor } from '../../utils/validator';
 
-const TextInput = ( { onChange, fieldInfo } ) => {
+const InputField = ( { onChange, fieldInfo } ) => {
     return (
         <Col xs={ 12 } sm={ 6 }>
             <FormGroup row color={ validationColor( fieldInfo.isError ) }>
@@ -28,6 +28,17 @@ const TextInput = ( { onChange, fieldInfo } ) => {
     );
 };
 
-TextInput.propTypes = {};
+InputField.propTypes = {
+    onChange: func.isRequired,
+    fieldInfo: shape({
+        name: string.isRequired,
+        label: string.isRequired,
+        type: string.isRequired,
+        value: string.isRequired,
+        pattern: string.isRequired,
+        isError: bool,
+        errorMessage: string.isRequired,
+    })
+};
 
-export default TextInput;
+export default InputField;

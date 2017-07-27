@@ -1,6 +1,6 @@
 //React
 import React from 'react';
-import {} from 'prop-types';
+import { shape, string, func } from 'prop-types';
 //Time Format
 import moment from 'moment';
 import { Col, Card, CardTitle, CardText, Button, } from 'reactstrap';
@@ -19,6 +19,15 @@ const Article = ({ article, toggle }) => {
     );
 };
 
-Article.PropTypes = {};
+Article.PropTypes = {
+    article: shape({
+        headline: shape({
+            main: string.isRequired,
+        }).isRequired,
+        pub_date: string.isRequired,
+        snippet: string.isRequired
+    }).isRequired,
+    toggle: func.isRequired
+};
 
 export default Article
