@@ -8,7 +8,7 @@ import * as ArticleActions from '../actions/ArticleActions';
 //Components
 import Articles from '../components/articles/Articles';
 
-class ArticleScreen extends Component {
+export class ArticleScreen extends Component {
     constructor(props, context) {
         super(props, context);
 
@@ -18,11 +18,11 @@ class ArticleScreen extends Component {
         this.onUserInput = this.onUserInput.bind(this);
     }
 
-    componentDidMount() {
-        this.props.actions.fetchArticles({ searchFields: this.props.articles.searchFields });
-    }
+    // componentDidMount() {
+    //     this.props.actions.fetchArticles({ searchFields: this.props.articles.searchFields });
+    // }
 
-    componentDidUpdate(prevProps, prevState) {
+    componentDidUpdate(prevProps) {
         if(prevProps.articles.searchFields !== this.props.articles.searchFields) {
             this.props.actions.fetchArticles({ searchFields: this.props.articles.searchFields });
         }

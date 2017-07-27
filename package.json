@@ -21,8 +21,9 @@
   },
   "devDependencies": {
     "enzyme": "^2.9.1",
+    "react-scripts": "1.0.10",
     "react-test-renderer": "^15.6.0",
-    "react-scripts": "1.0.10"
+    "redux-mock-store": "^1.2.3"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -30,21 +31,30 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
-  "collectCoverageFrom": [
-    "**/*.js",
-    "!**/node_modules/**",
-    "!**/vendor/**",
-    "!**/index.js",
-    "!**/initialState.js",
-    "!**/assets/**",
-    "!**/ActionTypes.js"
-  ],
-  "coverageThreshold": {
-    "global": {
-      "branches": 90,
-      "functions": 90,
-      "lines": 90,
-      "statements": 90
+  "jest": {
+    "collectCoverageFrom": [
+      "**/*.js",
+      "!**/node_modules/**",
+      "!**/api/**",
+      "!**/assets/**",
+      "!**/build/**",
+      "!**/coverage/**",
+      "!**/store/**",
+      "!**/vendor/**",
+      "!**/index.js",
+      "!**/initialState.js",
+      "!**/ActionTypes.js",
+      "!**/index.js",
+      "!**/registerServiceWorker.js",
+      "!**/initialState.js"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "branches": 90,
+        "functions": 90,
+        "lines": 90,
+        "statements": 90
+      }
     }
   }
 }
