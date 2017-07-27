@@ -17,22 +17,22 @@ export const validator = ({ value, pattern }) => {
     }
 };
 
-const isToLong = ({ value, max, fieldName }) => {
-    return (value.length > max) ?
-        { isError: true, errorMessage: `The ${fieldName} is too long.` } : defaultReturn;
-};
-
-const isToShort = ({ value, min, fieldName }) => {
-    return (value.length < min) ?
-        { isError: true, errorMessage: `The ${fieldName} is too short.` } : defaultReturn;
-};
-
-const isOnlyNumbers = ({ value }) => {
-    const numbersOnlyRegex = /^\d+$/;
-
-    return (!value.match(numbersOnlyRegex)) ?
-        { isError: true, errorMessage: 'Please use numbers only.' } : defaultReturn;
-};
+// const isToLong = ({ value, max, fieldName }) => {
+//     return (value.length > max) ?
+//         { isError: true, errorMessage: `The ${fieldName} is too long.` } : defaultReturn;
+// };
+//
+// const isToShort = ({ value, min, fieldName }) => {
+//     return (value.length < min) ?
+//         { isError: true, errorMessage: `The ${fieldName} is too short.` } : defaultReturn;
+// };
+//
+// const isOnlyNumbers = ({ value }) => {
+//     const numbersOnlyRegex = /^\d+$/;
+//
+//     return (!value.match(numbersOnlyRegex)) ?
+//         { isError: true, errorMessage: 'Please use numbers only.' } : defaultReturn;
+// };
 
 const isFutureDate = ({ value }) => {
     const currentValue = moment(value);

@@ -1,27 +1,14 @@
 //React
 import React from 'react';
 //Components
-import ArticleScreenConnected, { ArticleScreen } from '../../containers/ArticleScreen';
+import { ArticleScreen } from '../../containers/ArticleScreen';
 //Redux
-import configureStore  from 'redux-mock-store';
 import initialState from '../../reducers/initialState';
 //Testing
-import { mount, shallow } from 'enzyme';
-
-const middlewares = [];
-const mockStore = configureStore(middlewares);
+import { shallow } from 'enzyme';
 
 describe('ArticleScreen Container', () => {
-    let wrapper, store, props, instance;
-
-    it('should contain a componet called articles', () => {
-        store = mockStore(initialState);
-
-        wrapper = mount(<ArticleScreenConnected store={store} />);
-
-        const articles = wrapper.find('Articles');
-        expect(articles.length).toBe(1);
-    });
+    let wrapper, props, instance;
 
     it('should trigger the action methods when called', () => {
         props = {
