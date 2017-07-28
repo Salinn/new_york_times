@@ -6,7 +6,7 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as ArticleActions from '../actions/ArticleActions';
 //Components
-import Articles from '../components/articles/Articles';
+import App from '../components/layouts/App';
 
 export class ArticleScreen extends Component {
     constructor(props, context) {
@@ -18,9 +18,9 @@ export class ArticleScreen extends Component {
         this.onUserInput = this.onUserInput.bind(this);
     }
 
-    // componentDidMount() {
-    //     this.props.actions.fetchArticles({ searchFields: this.props.articles.searchFields });
-    // }
+    componentDidMount() {
+        this.props.actions.fetchArticles({ searchFields: this.props.articles.searchFields });
+    }
 
     componentDidUpdate(prevProps) {
         if(prevProps.articles.searchFields !== this.props.articles.searchFields) {
@@ -53,7 +53,7 @@ export class ArticleScreen extends Component {
         const { articles } = this.props;
 
         return (
-            <Articles articles={ articles }
+            <App articles={ articles }
                       nextSetOfArticles={ this.nextSetOfArticles }
                       lastSetOfArticles={ this.lastSetOfArticles }
                       toggleFullArticle={ this.toggleFullArticle }

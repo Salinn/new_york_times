@@ -12,32 +12,18 @@ import '../../assets/stylesheets/articles.css'
 const Articles = ({ articles, nextSetOfArticles, lastSetOfArticles, toggleFullArticle, onUserInput }) => {
     return (
         <div>
-            <h2 className="articleTag">New York Time's Articles</h2>
-
-            <Search searchMeta={ articles.searchMeta }
-                    searchFields={ articles.searchFields }
-                    onChange={ onUserInput } />
-
-            <PaginationButtons nextSetOfArticles={ nextSetOfArticles }
-                               lastSetOfArticles={ lastSetOfArticles }
-                               pageNumber={ articles.searchFields.page.value } />
-
-            <hr />
-
             <Row>
                 { articles.stories.map( (article, index) => {
                     return <Article key={ index } article={ article } toggle={ toggleFullArticle } />
                 })}
             </Row>
 
-            <FullArticle web_url={ articles.fullArticle.web_url }
-                         isOpen={ articles.fullArticle.isOpen }
-                         toggle={ toggleFullArticle } />
-
-            <hr />
             <PaginationButtons nextSetOfArticles={ nextSetOfArticles }
                                lastSetOfArticles={ lastSetOfArticles }
                                pageNumber={ articles.searchFields.page.value }/>
+            <FullArticle web_url={ articles.fullArticle.web_url }
+                         isOpen={ articles.fullArticle.isOpen }
+                         toggle={ toggleFullArticle } />
         </div>
     );
 };
@@ -53,8 +39,7 @@ Articles.PropTypes = {
         searchFields: object.isRequired
     }),
     nextSetOfArticles: func.isRequired,
-    lastSetOfArticles: func.isRequired,
-    toggleFullArticle: func.isRequired,
+    lastSetOfArticles: func.isRequired,toggleFullArticle: func.isRequired,
     onUserInput: func.isRequired,
 };
 

@@ -1,25 +1,29 @@
 //React
-import React, { Component } from 'react';
+import React from 'react';
 //Container
-import ArticleScreen from '../../containers/ArticleScreen';
+import Header from './Header';
+import Articles from '../../components/articles/Articles';
 import Footer from './Footer';
 import { Container, Row, Col } from 'reactstrap';
 
-class App extends Component {
-    render() {
-        return (
+const App = ({ articles, nextSetOfArticles, lastSetOfArticles, toggleFullArticle, onUserInput }) => {
+    return (
+        <div>
+            <Header isOpen={ true } />
             <Container>
                 <Row>
                     <Col xs={ 12 }>
-                        <ArticleScreen />
-                    </Col>
-                    <Col xs={ 12 }>
-                        <Footer/>
+                        <Articles articles={ articles }
+                                  nextSetOfArticles={ nextSetOfArticles }
+                                  lastSetOfArticles={ lastSetOfArticles }
+                                  toggleFullArticle={ toggleFullArticle }
+                                  onUserInput={ onUserInput } />
                     </Col>
                 </Row>
             </Container>
-        );
-    }
-}
+            <Footer />
+        </div>
+    );
+};
 
 export default App;
