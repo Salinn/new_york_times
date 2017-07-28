@@ -10,17 +10,22 @@ import PaginationButtons from './PaginationButtons';
 import '../../assets/stylesheets/articles.css'
 
 const Articles = ({ articles, nextSetOfArticles, lastSetOfArticles, toggleFullArticle, onUserInput }) => {
+    const startingPoint = ((articles.pagination.currentPage - 1) * articles.pagination.articlesPerPage);
+    const endingPoint = startingPoint + articles.pagination.articlesPerPage;
+
+    const stories = articles.stories.slice(startingPoint, endingPoint);
     return (
         <div>
             <Row>
-                { articles.stories.map( (article, index) => {
+                { stories.map( (article, index) => {
                     return <Article key={ index } article={ article } toggle={ toggleFullArticle } />
                 })}
             </Row>
 
             <PaginationButtons nextSetOfArticles={ nextSetOfArticles }
                                lastSetOfArticles={ lastSetOfArticles }
-                               pageNumber={ articles.searchFields.page.value }/>
+                               pagination={ articles.pagination }
+                               totalRows={ articles.stories.length } />
             <FullArticle web_url={ articles.fullArticle.web_url }
                          isOpen={ articles.fullArticle.isOpen }
                          toggle={ toggleFullArticle } />

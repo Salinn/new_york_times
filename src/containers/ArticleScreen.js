@@ -29,11 +29,11 @@ export class ArticleScreen extends Component {
     }
 
     nextSetOfArticles() {
-        this.props.actions.nextSetOfArticles({ searchFields: this.props.articles.searchFields });
+        this.props.actions.nextSetOfArticles({ page: this.props.articles.pagination.currentPage });
     }
 
     lastSetOfArticles() {
-        this.props.actions.lastSetOfArticles({ searchFields: this.props.articles.searchFields });
+        this.props.actions.lastSetOfArticles({ page: this.props.articles.pagination.currentPage });
     }
 
     toggleFullArticle(web_url) {

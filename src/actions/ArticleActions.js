@@ -19,15 +19,11 @@ export const fetchArticles = ({ searchFields, currentPage }) => async dispatch =
     }
 };
 
-export const nextSetOfArticles = ({ searchFields }) => dispatch => {
-    const newPage = (searchFields.page.value < 120) ? searchFields.page.value + 1 : 120;
-
-    dispatch(setPage({ page: newPage }));
+export const nextSetOfArticles = ({ page }) => dispatch => {
+    dispatch(setPage({ page: page + 1 }));
 };
-export const lastSetOfArticles = ({ searchFields }) => dispatch => {
-    const newPage = (searchFields.page.value > 0) ? searchFields.page.value - 1 : 0;
-
-    dispatch(setPage({ page: newPage }));
+export const lastSetOfArticles = ({ page }) => dispatch => {
+    dispatch(setPage({ page: page -1 }));
 };
 
 export const setPage = ({ page }) => {

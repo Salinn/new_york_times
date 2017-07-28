@@ -14,9 +14,9 @@ export default function ArticleReducer(state = initialState.articles, action) {
         case  types.SET_PAGE:
             return {
                 ...state,
-                searchFields: {
-                    ...state.searchFields,
-                    page: { ...state.searchFields.page, value: action.page } } };
+                pagination: {
+                    ...state.pagination,
+                    currentPage: action.page } };
         case types.TOGGLE_FULL_ARTICLE:
             return {
                 ...state,
