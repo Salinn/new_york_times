@@ -7,7 +7,7 @@ import { Navbar, Col, Nav, NavItem, NavLink } from 'reactstrap';
 import '../../assets/stylesheets/header.css';
 import SearchField from '../common/SearchField';
 
-const Header = ({ isOpen, toggle }) => {
+const Header = ({ changeArticles }) => {
     return (
         <div>
             <Navbar color='inverse' inverse toggleable>
@@ -21,32 +21,32 @@ const Header = ({ isOpen, toggle }) => {
             <Nav>
                 <Col xs={{ size: 2 }}>
                     <NavItem>
-                        <NavLink href="#">Home</NavLink>
+                        <NavLink href="#" onClick={ () => changeArticles({ pageName: 'Home'}) }>Home</NavLink>
                     </NavItem>
                 </Col>
                 <Col xs={{ size: 2 }}>
                     <NavItem>
-                        <NavLink href="#">World</NavLink>
+                        <NavLink href="#" onClick={ () => changeArticles({ pageName: 'World'}) }>World</NavLink>
                     </NavItem>
                 </Col>
                 <Col xs={{ size: 2 }}>
                     <NavItem>
-                        <NavLink href="#">U.S.</NavLink>
+                        <NavLink href="#" onClick={ () => changeArticles({ pageName: 'U.S.'}) }>U.S.</NavLink>
                     </NavItem>
                 </Col>
                 <Col xs={{ size: 2 }}>
                     <NavItem>
-                        <NavLink href="#">Politics</NavLink>
+                        <NavLink href="#" onClick={ () => changeArticles({ pageName: 'Politics'}) }>Politics</NavLink>
                     </NavItem>
                 </Col>
                 <Col xs={{ size: 2 }}>
                     <NavItem>
-                        <NavLink href="#">N.Y.</NavLink>
+                        <NavLink href="#" onClick={ () => changeArticles({ pageName: 'N.Y.'}) }>N.Y.</NavLink>
                     </NavItem>
                 </Col>
                 <Col xs={{ size: 2 }}>
                     <NavItem>
-                        <NavLink href="#">More</NavLink>
+                        <NavLink href="#" onClick={ () => changeArticles({ pageName: 'Sports'}) }>Sports</NavLink>
                     </NavItem>
                 </Col>
             </Nav>

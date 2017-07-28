@@ -4,6 +4,11 @@ import * as patterns from '../utils/types/patternTypes'
 export default {
     articles: {
         stories: [],
+        fullArticle: {
+            isOpen: false,
+            web_url: '',
+        },
+        currentPage: 'Home',
         searchMeta: {
             'api-key': {
                 name: 'api-key',
@@ -17,22 +22,6 @@ export default {
                 pattern: patterns.DEFAULT,
                 type: 'text',
             },
-            q: {
-                name: 'q',
-                label: 'Search',
-                pattern: patterns.DEFAULT,
-                type: 'text',
-            },
-            end_date: {
-                name: 'end_date',
-                label: 'Date',
-                pattern: patterns.DATE,
-                type: 'date',
-            },
-        },
-        fullArticle: {
-            isOpen: false,
-            web_url: '',
         },
         searchFields: {
             'api-key': {
@@ -42,16 +31,6 @@ export default {
             },
             page: {
                 value: 0,
-                isError: null,
-                errorMessage: '',
-            },
-            q: {
-                value: '',
-                isError: null,
-                errorMessage: '',
-            },
-            end_date: {
-                value: moment().format('YYYY-MM-DD'),
                 isError: null,
                 errorMessage: '',
             },

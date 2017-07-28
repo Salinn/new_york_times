@@ -6,10 +6,10 @@ import Articles from '../../components/articles/Articles';
 import Footer from './Footer';
 import { Container, Row, Col } from 'reactstrap';
 
-const App = ({ articles, nextSetOfArticles, lastSetOfArticles, toggleFullArticle, onUserInput }) => {
+const App = ({ articles, nextSetOfArticles, lastSetOfArticles, toggleFullArticle, onUserInput, changeArticles }) => {
     return (
         <div>
-            <Header isOpen={ true } />
+            <Header changeArticles={ changeArticles } />
             <Container>
                 <Row>
                     <Col xs={ 12 }>

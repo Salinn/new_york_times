@@ -7,6 +7,10 @@ import { Col, Card, CardTitle, Row, Button, Media, } from 'reactstrap';
 import '../../assets/stylesheets/articles.css'
 import notAvailable from '../../assets/images/not-available.jpg';
 
+const getImage = ({ article }) => {
+    return article && article.multimedia.length > 0 ? article.multimedia[1].url : notAvailable;
+};
+
 const Article = ({ article, toggle }) => {
     return  (
         <Col xs={{ size: 12 }}>
@@ -14,20 +18,20 @@ const Article = ({ article, toggle }) => {
                 <Card block className="articleCard">
                     <Media>
                         <Media left href="#">
-                            <Media object src={ notAvailable } alt={notAvailable} />
+                            <Media object className="img-fluid mediaImage" src={ getImage({ article }) } alt={notAvailable} />
                         </Media>
-                        <Media body>
+                        <Media body className="mediaBody">
                             <Media heading>
-                                { article.headline.main }
+                                { article.title }
                             </Media>
-                            <p>{ article.snippet }</p>
+                            <p>{ article.abstract }</p>
                             <p>
-                                { article.byline.original }
+                                { article.byline }
                                 <i>
-                                    { moment(article.pub_date).format('MM/DD/YYYY h:mm a') }
+                                    { moment(article.published_date).format('MM/DD/YYYY h:mm a') }
                                 </i>
                             </p>
-                            <Button onClick={ () => toggle(article.web_url) } block>Read More</Button>
+                            <Button onClick={ () => toggle(article.url) } block>Read More</Button>
                         </Media>
                     </Media>
                 </Card>

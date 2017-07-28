@@ -16,16 +16,16 @@ export class ArticleScreen extends Component {
         this.lastSetOfArticles = this.lastSetOfArticles.bind(this);
         this.toggleFullArticle = this.toggleFullArticle.bind(this);
         this.onUserInput = this.onUserInput.bind(this);
+        this.changeArticles = this.changeArticles.bind(this);
     }
 
     componentDidMount() {
-        this.props.actions.fetchArticles({ searchFields: this.props.articles.searchFields });
-    }
-
-    componentDidUpdate(prevProps) {
-        if(prevProps.articles.searchFields !== this.props.articles.searchFields) {
-            this.props.actions.fetchArticles({ searchFields: this.props.articles.searchFields });
-        }
+        this.props.actions.fetchArticles(
+            {
+                searchFields: this.props.articles.searchFields,
+                currentPage: this.props.articles.currentPage,
+            }
+        );
     }
 
     nextSetOfArticles() {
@@ -49,15 +49,20 @@ export class ArticleScreen extends Component {
         this.props.actions.inputChanged(eventInfo);
     };
 
+    changeArticles({ pageName }) {
+        this.props.actions.changeArticles({ searchFields: this.props.articles.searchFields, pageName });
+    }
+
     render() {
         const { articles } = this.props;
 
         return (
             <App articles={ articles }
-                      nextSetOfArticles={ this.nextSetOfArticles }
-                      lastSetOfArticles={ this.lastSetOfArticles }
-                      toggleFullArticle={ this.toggleFullArticle }
-                      onUserInput={ this.onUserInput } />
+                 nextSetOfArticles={ this.nextSetOfArticles }
+                 lastSetOfArticles={ this.lastSetOfArticles }
+                 toggleFullArticle={ this.toggleFullArticle }
+                 onUserInput={ this.onUserInput }
+                 changeArticles={ this.changeArticles } />
         );
     }
 }

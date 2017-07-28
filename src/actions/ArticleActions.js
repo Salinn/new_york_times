@@ -5,15 +5,16 @@ import * as ArticleAPI from '../utils/api/ArticleAPI.prod';
 //Validation
 import { validator } from '../utils/validator';
 
-export const fetchArticles = ({ searchFields }) => async dispatch => {
+export const fetchArticles = ({ searchFields, currentPage }) => async dispatch => {
     try {
         dispatch(fetchArticlesStarted());
-        let payload = await ArticleAPI.fetchArticles({ searchFields });
+        let payload = await ArticleAPI.fetchArticles({ searchFields, currentPage });
 
-        const { docs } = payload.data.response;
+        const stories = payload.data.results;
 
-        dispatch(fetchArticlesSuccess({ stories: docs }));
+        dispatch(fetchArticlesSuccess({ stories }));
     } catch (error) {
+        console.log(error);
         dispatch(fetchArticlesFailed());
     }
 };
@@ -53,4 +54,13 @@ export const inputChanged = ({ name, value, pattern }) => {
     const { isError, errorMessage } = validator({ value, pattern });
 
     return { type: types.INPUT_CHANGED, name, value, isError, errorMessage }
+};
+
+export const changeArticles = ({ searchFields, pageName }) => dispatch => {
+    dispatch(fetchArticles({ searchFields, currentPage: pageName }));
+    dispatch(changePage({ pageName }));
+};
+
+export const changePage = ({ pageName }) => {
+    return { type: types.CHANGE_PAGE, pageName };
 };
