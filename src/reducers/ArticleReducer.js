@@ -34,6 +34,8 @@ export default function ArticleReducer(state = initialState.articles, action) {
                         value: action.value,
                         isError: action.isError,
                         errorMessage: action.errorMessage, } } };
+        case types.CHANGE_PAGE:
+            return { ...state, currentPage: action.pageName };
         default:
             return { ...state };
     }

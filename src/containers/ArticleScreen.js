@@ -17,6 +17,7 @@ export class ArticleScreen extends Component {
         this.toggleFullArticle = this.toggleFullArticle.bind(this);
         this.onUserInput = this.onUserInput.bind(this);
         this.changeArticles = this.changeArticles.bind(this);
+        this.searchInput = this.searchInput.bind(this);
     }
 
     componentDidMount() {
@@ -53,6 +54,15 @@ export class ArticleScreen extends Component {
         this.props.actions.changeArticles({ searchFields: this.props.articles.searchFields, pageName });
     }
 
+    searchInput(event) {
+        this.props.actions.searchInput(
+            {
+                value: event.target.value,
+                searchFields: this.props.articles.searchFields,
+            }
+        )
+    }
+
     render() {
         const { articles } = this.props;
 
@@ -62,7 +72,8 @@ export class ArticleScreen extends Component {
                  lastSetOfArticles={ this.lastSetOfArticles }
                  toggleFullArticle={ this.toggleFullArticle }
                  onUserInput={ this.onUserInput }
-                 changeArticles={ this.changeArticles } />
+                 changeArticles={ this.changeArticles }
+                 searchInput={ this.searchInput } />
         );
     }
 }

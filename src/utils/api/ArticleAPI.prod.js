@@ -6,14 +6,13 @@ import moment from 'moment';
 //Used for defining the API Routes Available
 export const DOMAIN_NAME = 'https://api.nytimes.com/svc';
 const API_VERSION = '/v2';
-export const SPORTS_ARTICLE_ENDPOINT = DOMAIN_NAME + '/topstories' + API_VERSION + '/sports.json';
+
 export const HOME_ARTICLE_ENDPOINT = DOMAIN_NAME + '/topstories' + API_VERSION + '/home.json';
 export const WORLD_ARTICLE_ENDPOINT = DOMAIN_NAME + '/topstories' + API_VERSION + '/world.json';
 export const US_ARTICLE_ENDPOINT = DOMAIN_NAME + '/topstories' + API_VERSION + '/national.json';
 export const NY_ARTICLE_ENDPOINT = DOMAIN_NAME + '/topstories' + API_VERSION + '/nyregion.json';
 export const POLITICS_ARTICLE_ENDPOINT = DOMAIN_NAME + '/topstories' + API_VERSION + '/politics.json';
-
-
+export const MORE_ARTICLE_ENDPOINT = DOMAIN_NAME + '/search' + API_VERSION + '/articlesearch.json';
 
 export const fetchArticles = ({ searchFields, currentPage }) => {
     console.log(currentPage);
@@ -28,8 +27,8 @@ export const fetchArticles = ({ searchFields, currentPage }) => {
             return axios.get(POLITICS_ARTICLE_ENDPOINT + getParams({ searchFields, currentPage }));
         case 'N.Y.':
             return axios.get(NY_ARTICLE_ENDPOINT + getParams({ searchFields, currentPage }));
-        case 'Sports':
-            return axios.get(SPORTS_ARTICLE_ENDPOINT + getParams({ searchFields, currentPage }));
+        case 'More':
+            return axios.get(MORE_ARTICLE_ENDPOINT + getParams({ searchFields, currentPage }));
         default:
             return axios.get(HOME_ARTICLE_ENDPOINT + getParams({ searchFields, currentPage }));
     }
@@ -39,12 +38,7 @@ export const getParams = ({ searchFields }) => {
     let params = '?';
     const keys = Object.keys(searchFields);
 
-    keys.forEach( key => {
-        if (key === 'end_date') {
-            params += `&${key}=${moment(searchFields[key].value).format('YYYYMMDD')}`
-        } else if (searchFields[key].value !== '') {
-            params += `&${key}=${searchFields[key].value}`
-        }
-    });
+    keys.forEach( key => params += `&${key}=${searchFields[key]}` );
+
     return params
 };

@@ -13,20 +13,8 @@ export default {
             articlesPerPage: 10,
             currentPage: 1,
         },
-        searchMeta: {
-            'api-key': {
-                name: 'api-key',
-                label: 'Api Key',
-                pattern: patterns.DEFAULT,
-                type: 'text',
-            },
-        },
         searchFields: {
-            'api-key': {
-                value: 'a8457610b68381085a3fff38d6a36337:6:74255139',
-                isError: null,
-                errorMessage: '',
-            },
+            'api-key': 'a8457610b68381085a3fff38d6a36337:6:74255139',
         }
     }
 }

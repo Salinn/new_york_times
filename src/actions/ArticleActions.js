@@ -19,6 +19,22 @@ export const fetchArticles = ({ searchFields, currentPage }) => async dispatch =
     }
 };
 
+export const searchArticles = ({ searchFields, value }) => async dispatch => {
+    try {
+        dispatch(fetchArticlesStarted());
+        const updatedFields = { ...searchFields, q: value };
+
+        let payload = await ArticleAPI.fetchArticles({ searchFields: updatedFields, currentPage: 'More' });
+
+        const stories = payload.data.response.docs;
+
+        dispatch(fetchArticlesSuccess({ stories }));
+    } catch (error) {
+        console.log(error);
+        dispatch(fetchArticlesFailed());
+    }
+};
+
 export const nextSetOfArticles = ({ page }) => dispatch => {
     dispatch(setPage({ page: page + 1 }));
 };
@@ -59,4 +75,9 @@ export const changeArticles = ({ searchFields, pageName }) => dispatch => {
 
 export const changePage = ({ pageName }) => {
     return { type: types.CHANGE_PAGE, pageName };
+};
+
+export const searchInput = ({ searchFields, value }) => dispatch => {
+    dispatch(changePage({ pageName: 'More' }));
+    dispatch(searchArticles({ searchFields, value }));
 };

@@ -3,3 +3,18 @@
     margin-bottom: 0;
     text-align: center;
 }
+
+.centerDivText {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.navLink{
+    color: black !important;
+    font-size: 22px;
+}
+
+.activeTab {
+    text-decoration: underline !important;
+}

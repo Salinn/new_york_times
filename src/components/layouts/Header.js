@@ -2,53 +2,41 @@
 import React from 'react';
 import {} from 'prop-types';
 //Component
-import { Navbar, Col, Nav, NavItem, NavLink } from 'reactstrap';
+import { Navbar, Container, Row, Col, Nav, NavItem, NavLink } from 'reactstrap';
 //CSS
 import '../../assets/stylesheets/header.css';
 import SearchField from '../common/SearchField';
 
-const Header = ({ changeArticles }) => {
+const Header = ({ changeArticles, currentPage, searchInput }) => {
+    const pages = [ 'Home', 'World', 'U.S.', 'Politics', 'N.Y.', 'More' ];
     return (
         <div>
             <Navbar color='inverse' inverse toggleable>
-                <Col xs={{ offset: 3, size: 6, }}>
-                    <h4 className="headerTitle">New York Time's Articles</h4>
+                <Col xs={{ size: 12, }} sm={{ size: 6, }} md={{ offset: 3, size: 3, }} lg={{ offset: 4, size: 4, }} className='centerDivText'>
+                    <h4 className="headerTitle">The Time's</h4>
                 </Col>
-                <Col xs={{ size: 3, }}>
-                    <SearchField />
+                <Col xs={{ size: 12, }} sm={{ size: 6, }} md={{ size: 6, }}  lg={{ offset: 1, size: 3, }} className='float-right'>
+                    <SearchField onChange={ searchInput } />
                 </Col>
             </Navbar>
             <Nav>
-                <Col xs={{ size: 2 }}>
-                    <NavItem>
-                        <NavLink href="#" onClick={ () => changeArticles({ pageName: 'Home'}) }>Home</NavLink>
-                    </NavItem>
-                </Col>
-                <Col xs={{ size: 2 }}>
-                    <NavItem>
-                        <NavLink href="#" onClick={ () => changeArticles({ pageName: 'World'}) }>World</NavLink>
-                    </NavItem>
-                </Col>
-                <Col xs={{ size: 2 }}>
-                    <NavItem>
-                        <NavLink href="#" onClick={ () => changeArticles({ pageName: 'U.S.'}) }>U.S.</NavLink>
-                    </NavItem>
-                </Col>
-                <Col xs={{ size: 2 }}>
-                    <NavItem>
-                        <NavLink href="#" onClick={ () => changeArticles({ pageName: 'Politics'}) }>Politics</NavLink>
-                    </NavItem>
-                </Col>
-                <Col xs={{ size: 2 }}>
-                    <NavItem>
-                        <NavLink href="#" onClick={ () => changeArticles({ pageName: 'N.Y.'}) }>N.Y.</NavLink>
-                    </NavItem>
-                </Col>
-                <Col xs={{ size: 2 }}>
-                    <NavItem>
-                        <NavLink href="#" onClick={ () => changeArticles({ pageName: 'Sports'}) }>Sports</NavLink>
-                    </NavItem>
-                </Col>
+                <Container>
+                    <Row>
+                        { pages.map( page => {
+                            return(
+                                <Col xs={{size: 4}} sm={{size: 2}}>
+                                    <NavItem>
+                                        <NavLink href="#"
+                                                 onClick={ () => changeArticles({pageName: page}) }
+                                                 className={ `navLink ${currentPage === page ? 'activeTab' : ''}` }>
+                                            { page }
+                                        </NavLink>
+                                    </NavItem>
+                                </Col>
+                            )
+                        })}
+                    </Row>
+                </Container>
             </Nav>
         </div>
     );

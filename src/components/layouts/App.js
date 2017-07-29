@@ -6,10 +6,10 @@ import Articles from '../../components/articles/Articles';
 import Footer from './Footer';
 import { Container, Row, Col } from 'reactstrap';
 
-const App = ({ articles, nextSetOfArticles, lastSetOfArticles, toggleFullArticle, onUserInput, changeArticles }) => {
+const App = ({ articles, nextSetOfArticles, lastSetOfArticles, toggleFullArticle, onUserInput, changeArticles, searchInput }) => {
     return (
         <div>
-            <Header changeArticles={ changeArticles } />
+            <Header changeArticles={ changeArticles } currentPage={ articles.currentPage } searchInput={ searchInput } />
             <Container>
                 <Row>
                     <Col xs={ 12 }>

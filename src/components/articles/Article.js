@@ -7,31 +7,47 @@ import { Col, Card, CardTitle, Row, Button, Media, } from 'reactstrap';
 import '../../assets/stylesheets/articles.css'
 import notAvailable from '../../assets/images/not-available.jpg';
 
-const getImage = ({ article }) => {
-    return article && article.multimedia.length > 0 ? article.multimedia[1].url : notAvailable;
+const getImage = ({ multimedia }) => {
+    //http://www.nytimes.com/
+    if(multimedia.length > 0 && multimedia[0].url.includes('https')){
+        return multimedia[multimedia.length -1].url;
+    } else if(multimedia.length > 0){
+        return `http://www.nytimes.com/${multimedia[multimedia.length -1].url}`;
+    }else {
+        return notAvailable;
+    }
 };
 
 const Article = ({ article, toggle }) => {
+    const image = getImage({ multimedia: article.multimedia });
+    const title = article.title ? article.title : article.headline.print_headline;
+    const preview = article.abstract ? article.abstract : article.snippet;
+    const author = article.byline ? article.byline : article.byline ? article.byline.original : '';
+    const datePublished = moment(article.published_date ? article.published_date : article.pub_date).format('MM/DD/YYYY h:mm a');
+    const articleUrl = article.url ? article.url : article.web_url;
+
     return  (
         <Col xs={{ size: 12 }}>
             <Row>
                 <Card block className="articleCard">
                     <Media>
                         <Media left href="#">
-                            <Media object className="img-fluid mediaImage" src={ getImage({ article }) } alt={notAvailable} />
+                            <Media object className="img-fluid mediaImage" src={ image } alt={notAvailable} />
                         </Media>
                         <Media body className="mediaBody">
                             <Media heading>
-                                { article.title }
+                                { title }
                             </Media>
-                            <p>{ article.abstract }</p>
+                            <p>{ preview }</p>
                             <p>
-                                { article.byline }
+                                { author }
+                            </p>
+                            <p>
                                 <i>
-                                    { moment(article.published_date).format('MM/DD/YYYY h:mm a') }
+                                    { datePublished }
                                 </i>
                             </p>
-                            <Button onClick={ () => toggle(article.url) } block>Read More</Button>
+                            <Button onClick={ () => toggle(articleUrl) } block>Read More</Button>
                         </Media>
                     </Media>
                 </Card>
