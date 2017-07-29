@@ -1,6 +1,3 @@
-import moment from 'moment';
-import * as patterns from '../utils/types/patternTypes'
-
 export default {
     articles: {
         stories: [],

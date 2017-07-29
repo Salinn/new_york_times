@@ -1,6 +1,6 @@
 //React
 import React, { Component } from 'react';
-import {} from 'prop-types';
+import { array, func } from 'prop-types';
 //Redux
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
@@ -15,7 +15,6 @@ export class ArticleScreen extends Component {
         this.nextSetOfArticles = this.nextSetOfArticles.bind(this);
         this.lastSetOfArticles = this.lastSetOfArticles.bind(this);
         this.toggleFullArticle = this.toggleFullArticle.bind(this);
-        this.onUserInput = this.onUserInput.bind(this);
         this.changeArticles = this.changeArticles.bind(this);
         this.searchInput = this.searchInput.bind(this);
     }
@@ -31,7 +30,12 @@ export class ArticleScreen extends Component {
 
     componentDidUpdate(prevProps) {
         if(prevProps.articles.searchFields !== this.props.articles.searchFields) {
-            this.props.actions.fetchArticles({ searchFields: this.props.articles.searchFields });
+            this.props.actions.fetchArticles(
+                {
+                    searchFields: this.props.articles.searchFields,
+                    currentPage: this.props.articles.currentPage,
+                }
+            );
         }
     }
 
@@ -46,15 +50,6 @@ export class ArticleScreen extends Component {
     toggleFullArticle(web_url) {
         this.props.actions.toggleFullArticle({ web_url });
     }
-
-    onUserInput(event) {
-        const eventInfo = {
-            name: event.target.name,
-            value: event.target.value,
-            pattern: event.target.pattern,
-        };
-        this.props.actions.inputChanged(eventInfo);
-    };
 
     changeArticles({ pageName }) {
         this.props.actions.changeArticles({ searchFields: this.props.articles.searchFields, pageName });
@@ -77,14 +72,21 @@ export class ArticleScreen extends Component {
                  nextSetOfArticles={ this.nextSetOfArticles }
                  lastSetOfArticles={ this.lastSetOfArticles }
                  toggleFullArticle={ this.toggleFullArticle }
-                 onUserInput={ this.onUserInput }
                  changeArticles={ this.changeArticles }
                  searchInput={ this.searchInput } />
         );
     }
 }
 
-ArticleScreen.PropTypes = {};
+ArticleScreen.PropTypes = {
+    articles: array.isRequired,
+    nextSetOfArticles: func.isRequired,
+    lastSetOfArticles: func.isRequired,
+    toggleFullArticle: func.isRequired,
+    changeArticles: func.isRequired,
+    searchInput: func.isRequired,
+    fetchDocs: func.isRequired,
+};
 
 function mapStateToProps(state) {
     return {

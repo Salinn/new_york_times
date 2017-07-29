@@ -1,6 +1,6 @@
 //React
 import React from 'react';
-import {} from 'prop-types';
+import { func, string } from 'prop-types';
 //Component
 import { Navbar, Container, Row, Col, Nav, NavItem, NavLink } from 'reactstrap';
 //CSS
@@ -24,7 +24,7 @@ const Header = ({ changeArticles, currentPage, searchInput }) => {
                     <Row>
                         { pages.map( page => {
                             return(
-                                <Col xs={{size: 4}} sm={{size: 2}}>
+                                <Col key={ page } xs={{size: 4}} sm={{size: 2}}>
                                     <NavItem>
                                         <NavLink href="#"
                                                  onClick={ () => changeArticles({pageName: page}) }
@@ -42,6 +42,10 @@ const Header = ({ changeArticles, currentPage, searchInput }) => {
     );
 };
 
-Header.PropTypes = {};
+Header.PropTypes = {
+    changeArticles: func.isRequired,
+    currentPage: string.isRequired,
+    searchInput: func.isRequired,
+};
 
 export default Header

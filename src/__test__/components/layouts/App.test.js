@@ -9,15 +9,28 @@ describe('App', () => {
     let wrapper, props;
 
     beforeEach(() => {
-        props = {};
+        props = {
+            articles: [],
+            nextSetOfArticles: jest.fn(),
+            lastSetOfArticles: jest.fn(),
+            toggleFullArticle: jest.fn(),
+            changeArticles: jest.fn(),
+            searchInput: jest.fn()
+        };
 
         wrapper = shallow(<App { ...props } />);
     });
 
-    it('should only have one article screen container', () => {
-        const articleScreens = wrapper.find('Connect(ArticleScreen)');
+    it('should only have one header', () => {
+        const headers = wrapper.find('Header');
 
-        expect(articleScreens.length).toBe(1);
+        expect(headers.length).toBe(1);
+    });
+
+    it('should only have one article screen container', () => {
+        const articles = wrapper.find('Articles');
+
+        expect(articles.length).toBe(1);
     });
 
     it('should only have one footer', () => {

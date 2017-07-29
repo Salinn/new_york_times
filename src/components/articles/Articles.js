@@ -1,10 +1,9 @@
 //React
 import React from 'react';
-import { shape, array, object, bool, string, func } from 'prop-types';
+import { array, func } from 'prop-types';
 //Component
 import { Row, } from 'reactstrap';
 import Article from './Article';
-import Search from './Search';
 import FullArticle from './FullArticle'
 import PaginationButtons from './PaginationButtons';
 import '../../assets/stylesheets/articles.css'
@@ -30,15 +29,7 @@ const Articles = ({ articles, nextSetOfArticles, lastSetOfArticles, toggleFullAr
 };
 
 Articles.PropTypes = {
-    article: shape({
-        stories: array.isRequired,
-        searchMeta: object.isRequired,
-        fullArticle: shape({
-            isOpen: bool.isRequired,
-            web_url: string.isRequired,
-        }),
-        searchFields: object.isRequired
-    }),
+    articles: array.isRequired,
     nextSetOfArticles: func.isRequired,
     lastSetOfArticles: func.isRequired,toggleFullArticle: func.isRequired,
     onUserInput: func.isRequired,

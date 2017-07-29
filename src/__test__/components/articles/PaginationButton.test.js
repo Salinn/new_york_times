@@ -12,13 +12,13 @@ describe('Pagination Buttons', () => {
         props = {
             nextSetOfArticles: jest.fn(),
             lastSetOfArticles: jest.fn(),
-            pageNumber: 2
+            currentPage: 2
         };
 
         wrapper = shallow(<PaginationButtons { ...props } />);
     });
 
-    it('should only have one Card Text', () => {
+    it('should say we are on page 3', () => {
         const text = wrapper.find('h4').text();
 
         expect(text).toBe('On page 3');

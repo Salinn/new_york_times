@@ -2,8 +2,6 @@
 import * as types from './ActionTypes';
 //Article API
 import * as ArticleAPI from '../utils/api/ArticleAPI.prod';
-//Validation
-import { validator } from '../utils/validator';
 
 export const fetchArticles = ({ searchFields, value='', currentPage='More' }) => async dispatch => {
     try {

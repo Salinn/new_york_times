@@ -1,17 +1,15 @@
 //React
 import React from 'react';
-import { shape, string, func } from 'prop-types';
+import { shape, string, func, object } from 'prop-types';
 //Time Format
 import moment from 'moment';
-import { Col, Card, CardTitle, Row, Button, Media, } from 'reactstrap';
+import { Col, Card, Row, Button, Media, } from 'reactstrap';
+//Assets
 import '../../assets/stylesheets/articles.css'
 import notAvailable from '../../assets/images/not-available.jpg';
 
 const getImage = ({ multimedia }) => {
-    //http://www.nytimes.com/
-    if(multimedia.length > 0 && multimedia[0].url.includes('https')){
-        return multimedia[0].url;
-    } else if(multimedia.length > 0){
+    if(multimedia.length > 0){
         return `http://www.nytimes.com/${multimedia[0].url}`;
     }else {
         return notAvailable;
@@ -39,9 +37,7 @@ const Article = ({ article, toggle }) => {
                                 { title }
                             </Media>
                             <p>{ preview }</p>
-                            <p>
-                                { author }
-                            </p>
+                            <p>{ author }</p>
                             <p>
                                 <i>
                                     { datePublished }
@@ -62,15 +58,12 @@ Article.PropTypes = {
             main: string.isRequired,
         }).isRequired,
         pub_date: string.isRequired,
-        snippet: string.isRequired
-    }).isRequired,
+        snippet: string.isRequired,
+        web_url: string.isRequired,
+        byline: object.isRequired,
+        multimedia: object.isRequired,
+    }),
     toggle: func.isRequired
 };
 
 export default Article
-
-//article.byline.original
-// <CardTitle>{ article.headline.main }</CardTitle>
-// <i>{ moment(article.pub_date).format('MM/DD/YYYY h:mm a') }</i>
-// <CardText>{ article.snippet }</CardText>
-// <Button onClick={ () => toggle(article.web_url) } >Read More</Button>

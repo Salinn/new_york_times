@@ -1,7 +1,5 @@
 //Used for making https requests
 import axios from 'axios';
-//Used for dates
-import moment from 'moment';
 
 //Used for defining the API Routes Available
 export const DOMAIN_NAME = 'https://api.nytimes.com/svc/search/v2/articlesearch.json';

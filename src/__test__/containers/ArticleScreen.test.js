@@ -3,12 +3,29 @@ import React from 'react';
 //Components
 import { ArticleScreen } from '../../containers/ArticleScreen';
 //Redux
+import { Provider } from 'react-redux';
+import configureStore  from 'redux-mock-store';
 import initialState from '../../reducers/initialState';
 //Testing
-import { shallow } from 'enzyme';
+import { shallow, mount } from 'enzyme';
+
+const middlewares = [];
+const mockStore = configureStore(middlewares);
 
 describe('ArticleScreen Container', () => {
-    let wrapper, props, instance;
+    let wrapper, props, instance, store;
+
+    // it('matches screen shot', () => {
+    //     store = mockStore(initialState.articles);
+    //
+    //     wrapper = mount(
+    //         <Provider store={ store }>
+    //             <ArticleScreen />
+    //         </Provider>);
+    //
+    //     const apps = wrapper.find('App');
+    //     expect(apps.length).toBe(1);
+    // });
 
     it('should trigger the action methods when called', () => {
         props = {
@@ -17,9 +34,13 @@ describe('ArticleScreen Container', () => {
                 toggleFullArticle: jest.fn(),
                 lastSetOfArticles: jest.fn(),
                 nextSetOfArticles: jest.fn(),
-                inputChanged: jest.fn(),
+                searchInput: jest.fn(),
+                changeArticles: jest.fn(),
+                fetchArticles: jest.fn(),
             }
         };
+
+        const searchFields = initialState.articles.searchFields;
 
         wrapper = shallow(<ArticleScreen {...props} />);
         instance = wrapper.instance();
@@ -27,13 +48,16 @@ describe('ArticleScreen Container', () => {
         instance.toggleFullArticle('http://www.somewebsite.com/articles/a-cool-article');
         expect(props.actions.toggleFullArticle).toHaveBeenCalledWith({ web_url: 'http://www.somewebsite.com/articles/a-cool-article' });
 
-        instance.lastSetOfArticles({ searchFields: initialState.articles.searchFields });
-        expect(props.actions.lastSetOfArticles).toHaveBeenCalledWith({ searchFields: initialState.articles.searchFields });
+        instance.lastSetOfArticles();
+        expect(props.actions.lastSetOfArticles).toHaveBeenCalledWith({ page: 0 });
 
-        instance.nextSetOfArticles({ searchFields: initialState.articles.searchFields });
-        expect(props.actions.nextSetOfArticles).toHaveBeenCalledWith({searchFields: initialState.articles.searchFields });
+        instance.nextSetOfArticles();
+        expect(props.actions.nextSetOfArticles).toHaveBeenCalledWith({ page: 0 });
 
-        instance.onUserInput({ target: { name: 'q', value: 'star wars', pattern: 'DEFAULT' } });
-        expect(props.actions.inputChanged).toHaveBeenCalledWith({ name: 'q', value: 'star wars', pattern: 'DEFAULT' });
+        instance.searchInput({ target: { value: 'star wars' } });
+        expect(props.actions.searchInput).toHaveBeenCalledWith({ value: 'star wars', searchFields });
+
+        instance.changeArticles({ pageName: 'World' });
+        expect(props.actions.changeArticles).toHaveBeenCalledWith({ pageName: 'World', searchFields });
     });
 });
