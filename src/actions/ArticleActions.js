@@ -1,7 +1,7 @@
 //Loads Action Types
 import * as types from './ActionTypes';
 //Article API
-import * as ArticleAPI from '../utils/api/ArticleAPI.prod';
+import * as ArticleAPI from '../utils/api/ArticleAPI';
 
 export const fetchArticles = ({ searchFields, value='', currentPage='More' }) => async dispatch => {
     try {
@@ -10,10 +10,12 @@ export const fetchArticles = ({ searchFields, value='', currentPage='More' }) =>
 
         let payload = await ArticleAPI.fetchArticles({ searchFields: updatedFields, currentPage });
 
+        console.log(payload);
         const stories = payload.data.response.docs;
 
         dispatch(fetchArticlesSuccess({ stories }));
     } catch (error) {
+        console.log(error);
         dispatch(fetchArticlesFailed());
     }
 };
