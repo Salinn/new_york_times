@@ -4,15 +4,14 @@ import axios from 'axios';
 import moment from 'moment';
 
 //Used for defining the API Routes Available
-export const DOMAIN_NAME = 'https://api.nytimes.com/svc';
-const API_VERSION = '/v2';
+export const DOMAIN_NAME = 'https://api.nytimes.com/svc/search/v2/articlesearch.json';
 
-export const HOME_ARTICLE_ENDPOINT = DOMAIN_NAME + '/topstories' + API_VERSION + '/home.json';
-export const WORLD_ARTICLE_ENDPOINT = DOMAIN_NAME + '/topstories' + API_VERSION + '/world.json';
-export const US_ARTICLE_ENDPOINT = DOMAIN_NAME + '/topstories' + API_VERSION + '/national.json';
-export const NY_ARTICLE_ENDPOINT = DOMAIN_NAME + '/topstories' + API_VERSION + '/nyregion.json';
-export const POLITICS_ARTICLE_ENDPOINT = DOMAIN_NAME + '/topstories' + API_VERSION + '/politics.json';
-export const MORE_ARTICLE_ENDPOINT = DOMAIN_NAME + '/search' + API_VERSION + '/articlesearch.json';
+export const HOME_ARTICLE_ENDPOINT = DOMAIN_NAME  + '?';
+export const WORLD_ARTICLE_ENDPOINT = DOMAIN_NAME + '?fq=news_desk:("World")';
+export const US_ARTICLE_ENDPOINT = DOMAIN_NAME + '?fq=news_desk:("U.S.")';
+export const NY_ARTICLE_ENDPOINT = DOMAIN_NAME + '?fq=news_desk:("N.Y.")';
+export const POLITICS_ARTICLE_ENDPOINT = DOMAIN_NAME + '?fq=news_desk:("Politics")';
+export const MORE_ARTICLE_ENDPOINT = DOMAIN_NAME + '?';
 
 export const fetchArticles = ({ searchFields, currentPage }) => {
     console.log(currentPage);
@@ -35,10 +34,10 @@ export const fetchArticles = ({ searchFields, currentPage }) => {
 };
 
 export const getParams = ({ searchFields }) => {
-    let params = '?';
+    let params = '';
     const keys = Object.keys(searchFields);
 
-    keys.forEach( key => params += `&${key}=${searchFields[key]}` );
+    keys.forEach( key => params += searchFields[key] ? `&${key}=${searchFields[key]}` : '' );
 
     return params
 };

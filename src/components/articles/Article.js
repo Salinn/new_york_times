@@ -8,11 +8,12 @@ import '../../assets/stylesheets/articles.css'
 import notAvailable from '../../assets/images/not-available.jpg';
 
 const getImage = ({ multimedia }) => {
+    console.log(multimedia.length);
     //http://www.nytimes.com/
     if(multimedia.length > 0 && multimedia[0].url.includes('https')){
-        return multimedia[multimedia.length -1].url;
+        return multimedia[0].url;
     } else if(multimedia.length > 0){
-        return `http://www.nytimes.com/${multimedia[multimedia.length -1].url}`;
+        return `http://www.nytimes.com/${multimedia[0].url}`;
     }else {
         return notAvailable;
     }
@@ -20,11 +21,11 @@ const getImage = ({ multimedia }) => {
 
 const Article = ({ article, toggle }) => {
     const image = getImage({ multimedia: article.multimedia });
-    const title = article.title ? article.title : article.headline.print_headline;
-    const preview = article.abstract ? article.abstract : article.snippet;
-    const author = article.byline ? article.byline : article.byline ? article.byline.original : '';
-    const datePublished = moment(article.published_date ? article.published_date : article.pub_date).format('MM/DD/YYYY h:mm a');
-    const articleUrl = article.url ? article.url : article.web_url;
+    const title = article.headline.main;
+    const preview = article.snippet;
+    const author = article.byline ? article.byline.original : '';
+    const datePublished = moment(article.pub_date).format('MM/DD/YYYY h:mm a');
+    const articleUrl = article.web_url;
 
     return  (
         <Col xs={{ size: 12 }}>

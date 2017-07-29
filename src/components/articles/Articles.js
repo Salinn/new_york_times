@@ -9,23 +9,19 @@ import FullArticle from './FullArticle'
 import PaginationButtons from './PaginationButtons';
 import '../../assets/stylesheets/articles.css'
 
-const Articles = ({ articles, nextSetOfArticles, lastSetOfArticles, toggleFullArticle, onUserInput }) => {
-    const startingPoint = ((articles.pagination.currentPage - 1) * articles.pagination.articlesPerPage);
-    const endingPoint = startingPoint + articles.pagination.articlesPerPage;
-
-    const stories = articles.stories.slice(startingPoint, endingPoint);
+const Articles = ({ articles, nextSetOfArticles, lastSetOfArticles, toggleFullArticle }) => {
     return (
         <div>
             <Row>
-                { stories.map( (article, index) => {
+                { articles.stories.map( (article, index) => {
                     return <Article key={ index } article={ article } toggle={ toggleFullArticle } />
                 })}
             </Row>
 
             <PaginationButtons nextSetOfArticles={ nextSetOfArticles }
                                lastSetOfArticles={ lastSetOfArticles }
-                               pagination={ articles.pagination }
-                               totalRows={ articles.stories.length } />
+                               currentPage={ articles.searchFields.page } />
+
             <FullArticle web_url={ articles.fullArticle.web_url }
                          isOpen={ articles.fullArticle.isOpen }
                          toggle={ toggleFullArticle } />

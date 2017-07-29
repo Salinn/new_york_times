@@ -5,28 +5,25 @@ import { func, number, } from 'prop-types';
 import { Button, Row, Col } from 'reactstrap';
 import '../../assets/stylesheets/articles.css'
 
-const PaginationButtons = ({ nextSetOfArticles, lastSetOfArticles, pagination, totalRows }) => {
-    const totalPages = Math.ceil(totalRows/pagination.articlesPerPage) === 0 ?
-        1 : Math.ceil(totalRows/pagination.articlesPerPage);
-
+const PaginationButtons = ({ nextSetOfArticles, lastSetOfArticles, currentPage }) => {
     return (
         <Row>
             <Col sm={ 5 }>
                 <Button block
                         color="primary"
                         onClick={ lastSetOfArticles }
-                        disabled={ pagination.currentPage === 1 }>
+                        disabled={ currentPage === 0 }>
                     Previous Page
                 </Button>
             </Col>
             <Col sm={ 2 }>
-                <h4 className="onPage">On page { pagination.currentPage }</h4>
+                <h4 className="onPage">On page { currentPage + 1 }</h4>
             </Col>
             <Col sm={ 5 }>
                 <Button block
                         color="primary"
                         onClick={ nextSetOfArticles }
-                        disabled={ pagination.currentPage === totalPages }>
+                        disabled={ currentPage === 120 }>
                     Next Page
                 </Button>
             </Col>

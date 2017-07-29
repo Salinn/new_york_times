@@ -29,12 +29,18 @@ export class ArticleScreen extends Component {
         );
     }
 
+    componentDidUpdate(prevProps) {
+        if(prevProps.articles.searchFields !== this.props.articles.searchFields) {
+            this.props.actions.fetchArticles({ searchFields: this.props.articles.searchFields });
+        }
+    }
+
     nextSetOfArticles() {
-        this.props.actions.nextSetOfArticles({ page: this.props.articles.pagination.currentPage });
+        this.props.actions.nextSetOfArticles({ page: this.props.articles.searchFields.page });
     }
 
     lastSetOfArticles() {
-        this.props.actions.lastSetOfArticles({ page: this.props.articles.pagination.currentPage });
+        this.props.actions.lastSetOfArticles({ page: this.props.articles.searchFields.page });
     }
 
     toggleFullArticle(web_url) {
