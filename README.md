@@ -2,12 +2,13 @@
 
 - [How to run with api in development mode](#how-to-run-with-api-in-development-mode)
 - [How to run with api in production mode](#how-to-run-with-api-in-production-mode)
-- [How to run tests](#folder-structure)
-- [How to run tests with coverage](#available-scripts)
+- [How to run tests](#how-to-run-tests)
+- [How to run tests with coverage](#how-to-run-tests-with-coverage)
+- [Known issues](#known-issues)
 
 ## How to run with api in development mode
 
-- When you want to run this app and hit fake data you just need to ensure the ArticleAPI.js (src/utils/api/ArticleAPI) is set to ===
+- When you want to run this app and hit fake data you just need to ensure the ArticleAPI.js (src/utils/api/ArticleAPI) line 1 is set to `(process.env.NODE_ENV === 'development')`
 - Next either use yarn or npm to install the required libraries
   - yarn: type `yarn` to install libraries
   - npm: type `npm install`
@@ -18,7 +19,7 @@
 
 ## How to run with api in production mode
 
-- When you want to run this app and hit fake data you just need to ensure the ArticleAPI.js (src/utils/api/ArticleAPI) is set to !==
+- When you want to run this app and hit fake data you just need to ensure the ArticleAPI.js (src/utils/api/ArticleAPI) line 1 is set to `(process.env.NODE_ENV !== 'development')`
 - Next either use yarn or npm to install the required libraries
   - yarn: type `yarn` to install libraries
   - npm: type `npm install`
@@ -48,7 +49,7 @@
 - You should now be able to see the tests that are written and the what the coverage for every file is
   - Some files have been excluded if they are a config file, not written by the author, or irrelevant to the running application
 
-## Known Issues
+## Known issues
 
 - You can run `yarn build` and have a production build ready to deploy, but without the X-Frame-Option changed the iframe will not pop up with the article
   - You can find a production build running at http://react-ny-times.s3-website-us-east-1.amazonaws.com/#
