@@ -51,7 +51,7 @@ describe('search reducer', () => {
             ...articlesInitialState,
             searchFields: {
                 ...articlesInitialState.searchFields,
-                page: { ...articlesInitialState.searchFields.page, value: 5 }
+                page: 5
             }
         };
 
@@ -75,16 +75,10 @@ describe('search reducer', () => {
     });
 
     it('should update the state based on an input', () => {
-        const action = { type: types.INPUT_CHANGED, name: 'q', value: 'star', isError: false, errorMessage: ''};
+        const action = { type: types.CHANGE_PAGE, pageName: 'World' };
         const nextState = articleReducer(articlesInitialState, action );
 
-        const expectedState = {
-            ...articlesInitialState,
-            searchFields: {
-                ...articlesInitialState.searchFields,
-                q: { ...articlesInitialState.searchFields.q, value: 'star', isError: false }
-            }
-        };
+        const expectedState = { ...articlesInitialState, currentPage: 'World' };
 
         expect( nextState ).toEqual( expectedState );
     });

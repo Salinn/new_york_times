@@ -8,7 +8,6 @@ import '../../assets/stylesheets/articles.css'
 import notAvailable from '../../assets/images/not-available.jpg';
 
 const getImage = ({ multimedia }) => {
-    console.log(multimedia.length);
     //http://www.nytimes.com/
     if(multimedia.length > 0 && multimedia[0].url.includes('https')){
         return multimedia[0].url;

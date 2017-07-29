@@ -6,7 +6,7 @@ import SearchIcon from 'react-icons/lib/fa/search';
 import { InputGroup, InputGroupAddon, Input } from 'reactstrap';
 
 
-const SearchField = ({ fieldInfo, onChange }) => {
+const SearchField = ({ onChange }) => {
     return (
         <InputGroup>
             <InputGroupAddon>

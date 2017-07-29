@@ -13,8 +13,8 @@ export const NY_ARTICLE_ENDPOINT = DOMAIN_NAME + '?fq=news_desk:("N.Y.")';
 export const POLITICS_ARTICLE_ENDPOINT = DOMAIN_NAME + '?fq=news_desk:("Politics")';
 export const MORE_ARTICLE_ENDPOINT = DOMAIN_NAME + '?';
 
+
 export const fetchArticles = ({ searchFields, currentPage }) => {
-    console.log(currentPage);
     switch ( currentPage ){
         case 'Home':
             return axios.get(HOME_ARTICLE_ENDPOINT + getParams({ searchFields, currentPage }));

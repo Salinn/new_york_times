@@ -16,7 +16,6 @@ export const fetchArticles = ({ searchFields, value='', currentPage='More' }) =>
 
         dispatch(fetchArticlesSuccess({ stories }));
     } catch (error) {
-        console.log(error);
         dispatch(fetchArticlesFailed());
     }
 };
@@ -52,22 +51,16 @@ export const toggleFullArticle = ({ web_url }) => {
     return { type: types.TOGGLE_FULL_ARTICLE, web_url }
 };
 
-export const inputChanged = ({ name, value, pattern }) => {
-    const { isError, errorMessage } = validator({ value, pattern });
-
-    return { type: types.INPUT_CHANGED, name, value, isError, errorMessage }
-};
-
-export const changeArticles = ({ searchFields, pageName }) => dispatch => {
-    dispatch(fetchArticles({ searchFields, currentPage: pageName }));
-    dispatch(changePage({ pageName }));
+export const changeArticles = ({ searchFields, pageName }) => async dispatch => {
+    await dispatch(changePage({ pageName }));
+    await dispatch(fetchArticles({ searchFields, currentPage: pageName }));
 };
 
 export const changePage = ({ pageName }) => {
     return { type: types.CHANGE_PAGE, pageName };
 };
 
-export const searchInput = ({ searchFields, value }) => dispatch => {
-    dispatch(changePage({ pageName: 'More' }));
-    dispatch(fetchArticles({ searchFields, value }));
+export const searchInput = ({ searchFields, value }) => async dispatch => {
+    await dispatch(changePage({ pageName: 'More' }));
+    await dispatch(fetchArticles({ searchFields, value }));
 };
