@@ -54,3 +54,4 @@
 - You can run `yarn build` and have a production build ready to deploy, but without the X-Frame-Option changed the iframe will not pop up with the article
   - You can find a production build running at http://react-ny-times.s3-website-us-east-1.amazonaws.com/#
 - Test coverage is almost at 100%, Testing the container file was being a little finicky when trying to pass in the store so it is commented out for the time being. Normally this shouldn't be.
+- 429 responses if you search the api to quickly
