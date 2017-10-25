@@ -9,7 +9,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 import ArticleScreen from './containers/ArticleScreen';
 import registerServiceWorker from './registerServiceWorker';
 
-const store = configureStore();
+const store = configureStore()
 
 ReactDOM.render(
     <Provider store={store} >

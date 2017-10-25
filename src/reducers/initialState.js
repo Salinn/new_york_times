@@ -1,4 +1,6 @@
-export default {
+import { immutable } from 'component-calc-core'
+
+export default immutable.jsToImmutable({
     articles: {
         stories: [],
         fullArticle: {
@@ -11,4 +13,4 @@ export default {
             page: 0,
         }
     }
-}
+})

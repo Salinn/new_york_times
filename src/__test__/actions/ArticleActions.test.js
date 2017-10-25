@@ -50,9 +50,10 @@ describe('Search Actions', () => {
     });
 
     it('should create an action for when the user changes the page', () => {
+        const given = { pageName: 'World' }
         const expectedAction = { type: types.CHANGE_PAGE, pageName: 'World' };
 
-        expect(actions.changePage({ pageName: 'World' })).toEqual(expectedAction)
+        expect(actions.changePage(given)).toEqual(expectedAction)
     });
 
     //Thunks

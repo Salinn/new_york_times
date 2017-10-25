@@ -13,7 +13,7 @@ const Header = ({ changeArticles, currentPage, searchInput }) => {
         <div>
             <Navbar color='inverse' inverse toggleable>
                 <Col xs={{ size: 12, }} sm={{ size: 6, }} md={{ offset: 3, size: 3, }} lg={{ offset: 4, size: 4, }} className='centerDivText'>
-                    <h4 className="headerTitle">The Time's</h4>
+                    <h4 className="headerTitle">The Times</h4>
                 </Col>
                 <Col xs={{ size: 12, }} sm={{ size: 6, }} md={{ size: 6, }}  lg={{ offset: 1, size: 3, }} className='float-right'>
                     <SearchField onChange={ searchInput } />

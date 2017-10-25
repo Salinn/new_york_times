@@ -29,7 +29,8 @@ export class ArticleScreen extends Component {
     }
 
     componentDidUpdate(prevProps) {
-        if(prevProps.articles.searchFields !== this.props.articles.searchFields) {
+      const pageChanged = prevProps.articles.searchFields.page !== this.props.articles.searchFields.page
+        if(pageChanged) {
             this.props.actions.fetchArticles(
                 {
                     searchFields: this.props.articles.searchFields,
@@ -90,7 +91,8 @@ ArticleScreen.PropTypes = {
 
 function mapStateToProps(state) {
     return {
-        articles: state.articles,
+        // articles: state.articles.toJS(),
+        articles: state.get('articles').toJS(),
     };
 }
 

@@ -3,10 +3,10 @@ import * as types from '../actions/ActionTypes';
 //Initial Data
 import initialState from './initialState';
 
-export default function ArticleReducer(state = initialState.articles, action) {
+export default function ArticleReducer(state = initialState.get('articles'), action) {
     switch (action.type) {
         case types.FETCH_ARTICLES_STARTED:
-            return { ...state };
+            return state;
         case types.FETCH_ARTICLES_SUCCESS:
             return { ...state, stories: action.stories };
         case types.FETCH_ARTICLES_FAILED:
@@ -27,6 +27,6 @@ export default function ArticleReducer(state = initialState.articles, action) {
         case types.CHANGE_PAGE:
             return { ...state, currentPage: action.pageName };
         default:
-            return { ...state };
+            return state;
     }
 }
