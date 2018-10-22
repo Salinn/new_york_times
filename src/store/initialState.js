@@ -5,10 +5,10 @@ export default {
             isOpen: false,
             web_url: '',
         },
+    },
+    meta: {
         currentPage: 'Home',
-        searchFields: {
-            'api-key': 'a8457610b68381085a3fff38d6a36337:6:74255139',
-            page: 0,
-        }
+        apiKey: 'a8457610b68381085a3fff38d6a36337:6:74255139',
+        paginationPage: 0,
     }
 }

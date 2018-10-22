@@ -1,7 +1,7 @@
 //Actions
 import * as types from '../actions/ActionTypes';
 //Initial Data
-import initialState from './initialState';
+import initialState from '../store/initialState';
 
 export default function ArticleReducer(state = initialState.articles, action) {
     switch (action.type) {

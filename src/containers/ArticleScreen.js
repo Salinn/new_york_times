@@ -19,26 +19,6 @@ export class ArticleScreen extends Component {
         this.searchInput = this.searchInput.bind(this);
     }
 
-    componentDidMount() {
-        this.props.actions.fetchArticles(
-            {
-                searchFields: this.props.articles.searchFields,
-                currentPage: this.props.articles.currentPage,
-            }
-        );
-    }
-
-    componentDidUpdate(prevProps) {
-        if(prevProps.articles.searchFields !== this.props.articles.searchFields) {
-            this.props.actions.fetchArticles(
-                {
-                    searchFields: this.props.articles.searchFields,
-                    currentPage: this.props.articles.currentPage,
-                }
-            );
-        }
-    }
-
     nextSetOfArticles() {
         this.props.actions.nextSetOfArticles({ page: this.props.articles.searchFields.page });
     }

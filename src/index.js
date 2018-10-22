@@ -8,8 +8,10 @@ import configureStore from './store/configureStore';
 import 'bootstrap/dist/css/bootstrap.css';
 import ArticleScreen from './containers/ArticleScreen';
 import registerServiceWorker from './registerServiceWorker';
+import * as types from './actions/ActionTypes';
 
 const store = configureStore();
+store.dispatch({ type: types.FIND_ARTICLES });
 
 ReactDOM.render(
     <Provider store={store} >

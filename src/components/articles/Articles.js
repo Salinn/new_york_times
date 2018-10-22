@@ -12,18 +12,16 @@ const Articles = ({ articles, nextSetOfArticles, lastSetOfArticles, toggleFullAr
     return (
         <div>
             <Row>
-                { articles.stories.map( (article, index) => {
-                    return <Article key={ index } article={ article } toggle={ toggleFullArticle } />
+                {articles.stories.map((article, index) => {
+                    return <Article key={index} article={article} toggle={toggleFullArticle} />
                 })}
             </Row>
 
-            <PaginationButtons nextSetOfArticles={ nextSetOfArticles }
-                               lastSetOfArticles={ lastSetOfArticles }
-                               currentPage={ articles.searchFields.page } />
 
-            <FullArticle web_url={ articles.fullArticle.web_url }
-                         isOpen={ articles.fullArticle.isOpen }
-                         toggle={ toggleFullArticle } />
+            <FullArticle
+                web_url={articles.fullArticle.web_url}
+                isOpen={articles.fullArticle.isOpen}
+                toggle={toggleFullArticle} />
         </div>
     );
 };
@@ -31,7 +29,7 @@ const Articles = ({ articles, nextSetOfArticles, lastSetOfArticles, toggleFullAr
 Articles.PropTypes = {
     articles: array.isRequired,
     nextSetOfArticles: func.isRequired,
-    lastSetOfArticles: func.isRequired,toggleFullArticle: func.isRequired,
+    lastSetOfArticles: func.isRequired, toggleFullArticle: func.isRequired,
     onUserInput: func.isRequired,
 };
 
