@@ -1,15 +1,14 @@
 import * as types from '../actions/ActionTypes'
-import { put, takeEvery, select, call } from 'redux-saga/effects'
+import { put, takeEvery, select, call, delay } from 'redux-saga/effects'
 import { getFetchArticleInfo } from '../selectors'
 import { fetchApiRequest } from './Fetch'
 
 function* fetchArticles(props) {
-    const { searchTerm } = props 
-    const { currentPage, paginationPage } = yield select(getFetchArticleInfo)
-    console.log('hi')
+    const { currentPage, paginationPage, searchTerm } = yield select(getFetchArticleInfo)
+
     const apiRequest=`get${currentPage}Articles`
     const apiParams = { searchTerm, paginationPage }
-    
+
     return yield call(fetchApiRequest, { apiRequest, apiParams })
 }
 
@@ -20,7 +19,7 @@ function* findArticles(props) {
         const stories = response.data.response.docs
         yield put({ type: types.FETCH_ARTICLES_SUCCESS, stories })
     } else {
-        console.log('hit error', error)
+        yield put({ type: types.ERROR_OCCURERED, error })
     }
 }
 

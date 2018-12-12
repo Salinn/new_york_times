@@ -3,12 +3,16 @@ export const getFetchArticleInfo = (state) => {
         meta: {
             currentPage,
             paginationPage,
+        },
+        articles: {
+            searchTerm
         }
     } = state
 
     return {
         currentPage,
-        paginationPage
+        paginationPage,
+        searchTerm
     }
 }
 

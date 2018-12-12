@@ -1,12 +1,21 @@
 //Loads Action Types
 import * as types from './ActionTypes';
 //Article API
-import * as ArticleAPI from '../utils/api/ArticleAPI';
+import * as ArticleAPI from '../api/ArticleAPI';
 
-export const fetchArticles = ({ searchFields, value='', currentPage='More' }) => async dispatch => {
+export const fetchArticles = ({ searchFields }) => async (dispatch, getState) => {
     try {
         dispatch(fetchArticlesStarted());
-        const updatedFields = { ...searchFields, q: value };
+        const { 
+            articles: { 
+                searchTerm,
+            }, 
+            meta: {
+                currentPage,
+                apiKey
+            }
+        } = getState()
+        const updatedFields = { apiKey, q: searchTerm };
 
         let payload = await ArticleAPI.fetchArticles({ searchFields: updatedFields, currentPage });
 
@@ -18,13 +27,21 @@ export const fetchArticles = ({ searchFields, value='', currentPage='More' }) =>
     }
 };
 
-export const nextSetOfArticles = ({ page }) => dispatch => {
-    const newPage = (page < 120) ? page + 1 : 120;
+export const changeSearchTerm = ({ value }) => (dispatch, getState) => {
+    dispatch({ type: types.CHANGED_SEARCH_TERM, value })
+}
+
+export const nextSetOfArticles = () => (dispatch, getState) => {
+    const { meta: { paginationPage } } = getState()
+
+    const newPage = (paginationPage < 120) ? paginationPage + 1 : 120;
 
     dispatch(setPage({ page: newPage }));
 };
-export const lastSetOfArticles = ({ page }) => dispatch => {
-    const newPage = (page > 0) ? page - 1 : 0;
+export const lastSetOfArticles = () => (dispatch, getState) => {
+    const { meta: { paginationPage } } = getState()
+
+    const newPage = (paginationPage > 0) ? paginationPage - 1 : 0;
 
     dispatch(setPage({ page: newPage }));
 };
@@ -49,16 +66,25 @@ export const toggleFullArticle = ({ web_url }) => {
     return { type: types.TOGGLE_FULL_ARTICLE, web_url }
 };
 
-export const changeArticles = ({ searchFields, pageName }) => async dispatch => {
+export const changeArticles = ({ pageName }) => async dispatch => {
     await dispatch(changePage({ pageName }));
-    await dispatch(fetchArticles({ searchFields, currentPage: pageName }));
+    await dispatch(newToast({ color: 'success', message: `Sucessfull fetched articles from ${pageName}`}));
 };
 
 export const changePage = ({ pageName }) => {
     return { type: types.CHANGE_PAGE, pageName };
 };
 
-export const searchInput = ({ searchFields, value }) => async dispatch => {
+export const searchTermChanged = ({ value }) => dispatch => {
+    dispatch({ type: types.CHANGED_SEARCH_TERM, value })
+}
+
+export const newToast = ({ message, color }) => {
+    return { type: types.NEW_TOAST, message, color }
+}
+
+export const searchInput = ({ value }) => async dispatch => {
     await dispatch(changePage({ pageName: 'More' }));
-    await dispatch(fetchArticles({ searchFields, value }));
+    await dispatch(changeSearchTerm({ value }))
+    await dispatch(fetchArticles());
 };

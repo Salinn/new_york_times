@@ -8,7 +8,7 @@ import '../../assets/stylesheets/header.css';
 import SearchField from '../common/SearchField';
 
 const Header = ({ changeArticles, currentPage, searchInput }) => {
-    const pages = [ 'Home', 'World', 'U.S.', 'Politics', 'N.Y.', 'More' ];
+    const pages = [ 'Home', 'World', 'USA', 'Politics', 'NYC', 'More' ];
     return (
         <div>
             <Navbar color='inverse' inverse toggleable>

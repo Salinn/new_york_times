@@ -5,6 +5,7 @@ import { array, func } from 'prop-types';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as ArticleActions from '../actions/ArticleActions';
+import * as types from '../actions/ActionTypes'
 //Components
 import App from '../components/layouts/App';
 
@@ -20,11 +21,11 @@ export class ArticleScreen extends Component {
     }
 
     nextSetOfArticles() {
-        this.props.actions.nextSetOfArticles({ page: this.props.articles.searchFields.page });
+        this.props.actions.nextSetOfArticles();
     }
 
     lastSetOfArticles() {
-        this.props.actions.lastSetOfArticles({ page: this.props.articles.searchFields.page });
+        this.props.actions.lastSetOfArticles();
     }
 
     toggleFullArticle(web_url) {
@@ -32,16 +33,18 @@ export class ArticleScreen extends Component {
     }
 
     changeArticles({ pageName }) {
-        this.props.actions.changeArticles({ searchFields: this.props.articles.searchFields, pageName });
+        this.props.actions.changeArticles({ pageName });
+        this.props.dispatch({ type: types.FIND_ARTICLES });
     }
 
     searchInput(event) {
-        this.props.actions.searchInput(
+        this.props.actions.searchTermChanged(
             {
                 value: event.target.value,
-                searchFields: this.props.articles.searchFields,
             }
         )
+        this.props.actions.changeArticles({ pageName: 'More' })
+        this.props.dispatch({ type: types.FIND_ARTICLES });
     }
 
     render() {
@@ -69,13 +72,12 @@ ArticleScreen.PropTypes = {
 };
 
 function mapStateToProps(state) {
-    return {
-        articles: state.articles,
-    };
+    return state
 }
 
 function mapDispatchToProps(dispatch) {
     return {
+        dispatch,
         actions: bindActionCreators(ArticleActions, dispatch)
     }
 }

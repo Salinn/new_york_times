@@ -5,10 +5,14 @@ import { array, func } from 'prop-types';
 import { Row, } from 'reactstrap';
 import Article from './Article';
 import FullArticle from './FullArticle'
-import PaginationButtons from './PaginationButtons';
 import '../../assets/stylesheets/articles.css'
 
-const Articles = ({ articles, nextSetOfArticles, lastSetOfArticles, toggleFullArticle }) => {
+const Articles = (props) => {
+    const {
+        articles,
+        toggleFullArticle
+    } = props 
+
     return (
         <div>
             <Row>
@@ -16,7 +20,6 @@ const Articles = ({ articles, nextSetOfArticles, lastSetOfArticles, toggleFullAr
                     return <Article key={index} article={article} toggle={toggleFullArticle} />
                 })}
             </Row>
-
 
             <FullArticle
                 web_url={articles.fullArticle.web_url}

@@ -11,12 +11,6 @@ export default function ArticleReducer(state = initialState.articles, action) {
             return { ...state, stories: action.stories };
         case types.FETCH_ARTICLES_FAILED:
             return { ...state };
-        case  types.SET_PAGE:
-            return {
-                ...state,
-                searchFields: {
-                    ...state.searchFields,
-                    page: action.page } };
         case types.TOGGLE_FULL_ARTICLE:
             return {
                 ...state,
@@ -26,6 +20,8 @@ export default function ArticleReducer(state = initialState.articles, action) {
                     isOpen: !state.fullArticle.isOpen } };
         case types.CHANGE_PAGE:
             return { ...state, currentPage: action.pageName };
+        case types.CHANGED_SEARCH_TERM:
+            return { ...state, searchTerm: action.value };
         default:
             return { ...state };
     }

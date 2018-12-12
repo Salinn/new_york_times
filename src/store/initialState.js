@@ -5,10 +5,12 @@ export default {
             isOpen: false,
             web_url: '',
         },
+        searchTerm: '',
     },
+    toasts: [],
     meta: {
         currentPage: 'Home',
-        apiKey: 'a8457610b68381085a3fff38d6a36337:6:74255139',
+        apiKey: 'fd6e3c1cb41a42d29522371f58b2453d',
         paginationPage: 0,
     }
 }

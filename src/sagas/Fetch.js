@@ -1,7 +1,7 @@
 import * as types from '../actions/ActionTypes'
 import { put, select, call } from 'redux-saga/effects'
 import { getApiToken } from '../selectors'
-import * as apiRoutes from '../utils/api/ArticleAPI'
+import * as apiRoutes from '../api/ArticleAPI'
 
 function* fetchApiRequest(props) {
     const apiRequestInfo = {

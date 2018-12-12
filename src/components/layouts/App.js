@@ -4,20 +4,34 @@ import { array, func } from 'prop-types';
 //Container
 import Header from './Header';
 import Articles from '../../components/articles/Articles';
+import Toasts from '../../containers/ToastContainer'
 import Footer from './Footer';
 import { Container, Row, Col } from 'reactstrap';
 
-const App = ({ articles, nextSetOfArticles, lastSetOfArticles, toggleFullArticle, changeArticles, searchInput }) => {
+const App = (props) => {
+    const {
+        articles, 
+        nextSetOfArticles, 
+        lastSetOfArticles, 
+        toggleFullArticle, 
+        changeArticles, 
+        searchInput 
+    } = props
+
     return (
         <div>
             <Header changeArticles={ changeArticles } currentPage={ articles.currentPage } searchInput={ searchInput } />
             <Container>
                 <Row>
+                    <Col xs={12}>
+                        <Toasts />
+                    </Col>
                     <Col xs={ 12 }>
-                        <Articles articles={ articles }
-                                  nextSetOfArticles={ nextSetOfArticles }
-                                  lastSetOfArticles={ lastSetOfArticles }
-                                  toggleFullArticle={ toggleFullArticle } />
+                        <Articles 
+                            articles={ articles }
+                            nextSetOfArticles={ nextSetOfArticles }
+                            lastSetOfArticles={ lastSetOfArticles }
+                            toggleFullArticle={ toggleFullArticle } />
                     </Col>
                 </Row>
             </Container>
