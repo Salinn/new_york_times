@@ -1,5 +1,5 @@
 import * as types from '../actions/ActionTypes'
-import { put, takeEvery, select, call, delay } from 'redux-saga/effects'
+import { put, takeEvery, select, take, cancel, fork, call, delay } from 'redux-saga/effects'
 import { getFetchArticleInfo } from '../selectors'
 import { fetchApiRequest } from './Fetch'
 
@@ -17,6 +17,7 @@ function* findArticles(props) {
     
     if(response) {
         const stories = response.data.response.docs
+        yield put({ type: types.NEW_TOAST, message: 'Succenn', color: 'success' })
         yield put({ type: types.FETCH_ARTICLES_SUCCESS, stories })
     } else {
         yield put({ type: types.ERROR_OCCURERED, error })
@@ -24,7 +25,16 @@ function* findArticles(props) {
 }
 
 function* watchFindArticles() {
-    yield takeEvery(types.FIND_ARTICLES, findArticles)
+    let task
+    while (true) {
+        yield take(types.FIND_ARTICLES)
+        
+        yield delay(2000)
+        if (task) {
+            yield cancel(task)
+        }
+        task = yield fork(findArticles)
+    }
 }
 
 export {

@@ -68,7 +68,7 @@ export const toggleFullArticle = ({ web_url }) => {
 
 export const changeArticles = ({ pageName }) => async dispatch => {
     await dispatch(changePage({ pageName }));
-    await dispatch(newToast({ color: 'success', message: `Sucessfull fetched articles from ${pageName}`}));
+    // await dispatch(newToast({ color: 'success', message: `Sucessfull fetched articles from ${pageName}`}));
 };
 
 export const changePage = ({ pageName }) => {
