@@ -16,9 +16,9 @@ export const mapStateToProps = (state) => {
 }
 
 export const mapDispatchToProps = {
-        nextSetOfArticles,
-        lastSetOfArticles,
-        toggleFullArticle
+    nextSetOfArticles,
+    lastSetOfArticles,
+    toggleFullArticle
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Articles)

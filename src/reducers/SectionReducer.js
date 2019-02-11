@@ -1,5 +1,3 @@
-//Actions
-import { FETCH_ARTICLES_SUCCESS } from '../actions/ActionTypes';
 //Initial Data
 import initialState from '../store/initialState';
 

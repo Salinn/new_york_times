@@ -45,7 +45,7 @@ const Article = (props) => {
                                     { datePublished }
                                 </i>
                             </p>
-                            <Button onClick={ () => toggle(articleUrl) } block>Read More</Button>
+                            <Button onClick={ () => toggle({ web_url: articleUrl}) } block>Read More</Button>
                         </Media>
                     </Media>
                 </Card>

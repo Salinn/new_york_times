@@ -15,19 +15,19 @@ export const MORE_ARTICLE_ENDPOINT = DOMAIN_NAME + '?';
 export const fetchArticles = ({ searchFields, currentPage }) => {
     switch ( currentPage ){
         case 'Home':
-            return axios.get(HOME_ARTICLE_ENDPOINT + getParams({ searchFields, currentPage }));
+            return axios.get(HOME_ARTICLE_ENDPOINT + getParams({ searchFields }));
         case 'World':
-            return axios.get(WORLD_ARTICLE_ENDPOINT + getParams({ searchFields, currentPage }));
+            return axios.get(WORLD_ARTICLE_ENDPOINT + getParams({ searchFields }));
         case 'U.S.':
-            return axios.get(US_ARTICLE_ENDPOINT + getParams({ searchFields, currentPage }));
+            return axios.get(US_ARTICLE_ENDPOINT + getParams({ searchFields }));
         case 'Politics':
-            return axios.get(POLITICS_ARTICLE_ENDPOINT + getParams({ searchFields, currentPage }));
+            return axios.get(POLITICS_ARTICLE_ENDPOINT + getParams({ searchFields }));
         case 'N.Y.':
-            return axios.get(NY_ARTICLE_ENDPOINT + getParams({ searchFields, currentPage }));
+            return axios.get(NY_ARTICLE_ENDPOINT + getParams({ searchFields }));
         case 'More':
-            return axios.get(MORE_ARTICLE_ENDPOINT + getParams({ searchFields, currentPage }));
+            return axios.get(MORE_ARTICLE_ENDPOINT + getParams({ searchFields }));
         default:
-            return axios.get(HOME_ARTICLE_ENDPOINT + getParams({ searchFields, currentPage }));
+            return axios.get(HOME_ARTICLE_ENDPOINT + getParams({ searchFields }));
     }
 };
 

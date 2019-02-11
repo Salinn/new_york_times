@@ -7,6 +7,12 @@ import MockAdapter from 'axios-mock-adapter';
 import * as actions from '../../actions/PageActions';
 import * as types from '../../actions/ActionTypes';
 import initialState from '../../store/initialState';
+import {
+    MORE_ARTICLE_ENDPOINT,
+    HOME_ARTICLE_ENDPOINT,
+    getParams
+} from '../../utils/api/ArticleAPI.prod';
+
 
 const middleware = [thunk];
 const mockStore = configureMockStore(middleware);
@@ -16,7 +22,7 @@ afterEach(() => {
     mock.reset();
 });
 
-describe('Search Actions', () => {
+describe('Page Actions', () => {
     //Actions
     it('should create an action for when we go to the next set of articles', () => {
         const expectedAction = { type: types.SET_PAGE, page: 3 };
@@ -38,63 +44,111 @@ describe('Search Actions', () => {
 
     //Thunks
     it('should change to the next page', async () => {
-        const store = mockStore();
+        const state = {
+            ...initialState,
+            page: {
+                ...initialState.page,
+                pagination: {
+                    ...initialState.page.pagination,
+                    current: 101
+                }
+            }
+        }
+        
+        const store = mockStore(state);
 
         const expectedDispatchedActions = [
             { type: types.SET_PAGE, page: 102 },
         ];
 
-        await store.dispatch(actions.nextSetOfArticles({ page: 101 }));
+        await store.dispatch(actions.nextSetOfArticles());
 
         const actualDispatchedActions = store.getActions();
         expect(actualDispatchedActions).toEqual(expectedDispatchedActions);
     });
 
     it('should change to the next page when the page is past what the api allows', async () => {
-        const store = mockStore();
-        const state = store.getState()
-        
+        const state = { 
+            ...initialState,
+            page: {
+                ...initialState.page,
+                pagination: {
+                    ...initialState.page.pagination,
+                    current: 121
+                }
+            }
+        }
+        const store = mockStore(state);
 
         const expectedDispatchedActions = [
             { type: types.SET_PAGE, page: 120 },
         ];
 
-        await store.dispatch(actions.nextSetOfArticles({ page: 121 }));
+        await store.dispatch(actions.nextSetOfArticles());
 
         const actualDispatchedActions = store.getActions();
         expect(actualDispatchedActions).toEqual(expectedDispatchedActions);
     });
 
     it('should change to the last page', async () => {
-        const store = mockStore();
+        const state = {
+            ...initialState,
+            page: {
+                ...initialState.page,
+                pagination: {
+                    ...initialState.page.pagination,
+                    current: 101
+                }
+            }
+        }
+        const store = mockStore(state);
 
         const expectedDispatchedActions = [
             { type: types.SET_PAGE, page: 100 },
         ];
 
-        await store.dispatch(actions.lastSetOfArticles({ page: 101 }));
+        await store.dispatch(actions.lastSetOfArticles());
 
         const actualDispatchedActions = store.getActions();
         expect(actualDispatchedActions).toEqual(expectedDispatchedActions);
     });
 
     it('should change to the last page when the page is before what the api allows', async () => {
-        const store = mockStore();
+        const state = {
+            ...initialState,
+            page: {
+                ...initialState.page,
+                pagination: {
+                    ...initialState.page.pagination,
+                    current: -1
+                }
+            }
+        }
+        const store = mockStore(state);
 
         const expectedDispatchedActions = [
             { type: types.SET_PAGE, page: 0 },
         ];
 
-        await store.dispatch(actions.lastSetOfArticles({ page: -1 }));
+        await store.dispatch(actions.lastSetOfArticles());
 
         const actualDispatchedActions = store.getActions();
         expect(actualDispatchedActions).toEqual(expectedDispatchedActions);
     });
 
-    it('should search for articles', async () => {
-        const store = mockStore();
+    it('should search for articles with a search term', async () => {
+        const state = {
+            ...initialState,
+            page: {
+                ...initialState.page,
+                searchTerm: 'Patriots'
+            }
+        }
+
+        const searchFields = { q: 'Patriots', 'api-key': initialState.meta.apiKey }
+
+        const store = mockStore(state);
         const stories = [1, 2, 3];
-        const searchFields = { ...initialState.articles.searchFields, q: 'Patriots' };
 
         mock.onGet(MORE_ARTICLE_ENDPOINT + getParams({ searchFields })).reply(200, {
             response: {
@@ -108,18 +162,18 @@ describe('Search Actions', () => {
             { type: types.FETCH_ARTICLES_SUCCESS, stories }
         ];
 
-        await store.dispatch(actions.searchInput({ searchFields, value: 'Patriots' }));
+        await store.dispatch(actions.searchInput({ searchTerm: 'Patriots' }));
 
         const actualDispatchedActions = store.getActions();
         expect(actualDispatchedActions).toEqual(expectedDispatchedActions);
     });
 
     it('should search for new articles when the page changes', async () => {
-        const store = mockStore();
+        const store = mockStore(initialState);
         const stories = [1, 2, 3];
-        const searchFields = initialState.articles.searchFields;
+        const searchFields = { q: '', 'api-key': initialState.meta.apiKey }
 
-        mock.onGet(WORLD_ARTICLE_ENDPOINT + getParams({ searchFields })).reply(200, {
+        mock.onGet(HOME_ARTICLE_ENDPOINT + getParams({ searchFields })).reply(200, {
             response: {
                 docs: [1, 2, 3]
             }
@@ -131,16 +185,16 @@ describe('Search Actions', () => {
             { type: types.FETCH_ARTICLES_SUCCESS, stories }
         ];
 
-        await store.dispatch(actions.changeArticles({ searchFields, pageName: 'World' }));
+        await store.dispatch(actions.changeSection({ pageName: 'World' }));
 
         const actualDispatchedActions = store.getActions();
         expect(actualDispatchedActions).toEqual(expectedDispatchedActions);
     });
 
     it('should search for articles with no value', async () => {
-        const store = mockStore();
+        const store = mockStore(initialState);
         const stories = [1, 2, 3];
-        const searchFields = initialState.articles.searchFields;
+        const searchFields = { q: '', 'api-key': initialState.meta.apiKey }
 
         mock.onGet(MORE_ARTICLE_ENDPOINT + getParams({ searchFields })).reply(200, {
             response: {

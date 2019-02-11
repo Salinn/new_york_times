@@ -23,16 +23,14 @@ export const setPage = ({ page }) => {
 
 //Thunks
 export const changeSection = (props) => async dispatch => {
-    console.log('props: ', props)
     const { pageName } = props
 
-    await dispatch(changePage({ pageName }));
-    await dispatch(fetchArticles());
+    dispatch(changePage({ pageName }));
+    dispatch(fetchArticles());
 };
 
 export const searchInput = (props) => async dispatch => {
-    console.log('props: ', props)
-    const { pageName, searchTerm } = props
+    const { searchTerm='' } = props
 
     await dispatch(changePage({ pageName: 'More', searchTerm }));
     await dispatch(fetchArticles());

@@ -1,5 +1,5 @@
 //Reducer
-import pageReducer from '../../reducers/PageReducer';
+import pageReducer from '../../reducers/PagesReducer';
 //Action Types
 import * as types from '../../actions/ActionTypes';
 //State

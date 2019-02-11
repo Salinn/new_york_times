@@ -60,7 +60,7 @@ describe('Article', () => {
     it('should call the modal and pass it the web_url', () => {
         wrapper.find('Button').first().simulate('click');
 
-        expect(props.toggle).toHaveBeenCalledWith('http://www.somewebsite.com/articles/a-cool-article');
+        expect(props.toggle).toHaveBeenCalledWith({ web_url: 'http://www.somewebsite.com/articles/a-cool-article' });
     });
 
     //Edge Cases

@@ -1,7 +1,8 @@
 export default {
     stories: [],
     meta: {
-        isLoading: true
+        isLoading: true,
+        apiKey: 'fd6e3c1cb41a42d29522371f58b2453d'
     },
     page: {
         fullArticle: {
@@ -16,5 +17,6 @@ export default {
         searchTerm: '',
         currentPage: 'Home',
     },
-    sections: ['Home', 'World', 'U.S.', 'Politics', 'N.Y.', 'More']
+    sections: ['Home', 'World', 'U.S.', 'Politics', 'N.Y.', 'More'],
+    toast: []
 }

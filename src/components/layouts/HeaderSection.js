@@ -1,11 +1,9 @@
 //React
 import React from 'react';
-import { func, string } from 'prop-types';
 //Component
 import { Col, NavItem, NavLink } from 'reactstrap';
 //CSS
 import '../../assets/stylesheets/header.css';
-import SearchField from '../common/SearchField';
 
 const HeaderSection = (props) => {
     const {
