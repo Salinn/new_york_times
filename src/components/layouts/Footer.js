@@ -1,6 +1,5 @@
 //React
 import React from 'react';
-import {} from 'prop-types';
 //Styling
 import '../../assets/stylesheets/footer.css'
 

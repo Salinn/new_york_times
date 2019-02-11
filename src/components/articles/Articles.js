@@ -8,22 +8,38 @@ import FullArticle from './FullArticle'
 import PaginationButtons from './PaginationButtons';
 import '../../assets/stylesheets/articles.css'
 
-const Articles = ({ articles, nextSetOfArticles, lastSetOfArticles, toggleFullArticle }) => {
+const Articles = (props) => {
+    const {
+        articles,
+        page,
+        nextSetOfArticles,
+        lastSetOfArticles,
+        toggleFullArticle
+    } = props
+
     return (
         <div>
             <Row>
-                { articles.stories.map( (article, index) => {
-                    return <Article key={ index } article={ article } toggle={ toggleFullArticle } />
+                { articles.map( (article, index) => {
+                    return (
+                        <Article
+                            key={ index }
+                            article={ article }
+                            toggle={ toggleFullArticle }
+                        />
+                    )
                 })}
             </Row>
 
-            <PaginationButtons nextSetOfArticles={ nextSetOfArticles }
-                               lastSetOfArticles={ lastSetOfArticles }
-                               currentPage={ articles.searchFields.page } />
+            <PaginationButtons 
+                nextSetOfArticles={ nextSetOfArticles }
+                lastSetOfArticles={ lastSetOfArticles }
+                pagination={page.pagination } />
 
-            <FullArticle web_url={ articles.fullArticle.web_url }
-                         isOpen={ articles.fullArticle.isOpen }
-                         toggle={ toggleFullArticle } />
+            <FullArticle 
+                web_url={ page.fullArticle.web_url }
+                isOpen={ page.fullArticle.isOpen }
+                toggle={ toggleFullArticle } />
         </div>
     );
 };

@@ -1,10 +1,16 @@
 //Redux
 import { combineReducers } from 'redux';
 //Reducers
-import articles from './ArticleReducer';
+import meta from './MetaReducer';
+import page from './PageReducer';
+import sections from './SectionReducer';
+import stories from './StoryReducer';
 
 const rootReducer = combineReducers({
-    articles,
+    meta,
+    page,
+    sections,
+    stories,
 });
 
 export default rootReducer;

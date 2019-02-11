@@ -1,6 +1,6 @@
 //React
 import React from 'react';
-import {} from 'prop-types';
+import { func } from 'prop-types';
 //Component
 import SearchIcon from 'react-icons/lib/fa/search';
 import { InputGroup, InputGroupAddon, Input } from 'reactstrap';
@@ -17,6 +17,8 @@ const SearchField = ({ onChange }) => {
     );
 };
 
-SearchField.PropTypes = {};
+SearchField.PropTypes = {
+    onChange: func.isRequired
+};
 
 export default SearchField

@@ -2,8 +2,6 @@
 import React from 'react';
 //Component
 import Articles from '../../../components/articles/Articles';
-//initial state
-import initialState from '../../../reducers/initialState';
 //Testing
 import { shallow } from 'enzyme';
 
@@ -12,69 +10,72 @@ describe('Articles', () => {
 
     beforeEach(() => {
         props = {
-            articles: {
-                ...initialState.articles,
-                stories: [
-                    {
-                        headline: {
-                            main: 'New game of thrones spoiler!'
-                        },
-                        pub_date: "2017-07-26T23:55:18+0000",
-                        snippet: "I am just kidding that would be cruel and unusual, " +
-                        "but I am certainly looking forward to the next few episodes!",
-                        web_url: 'http://www.somewebsite.com/articles/a-cool-article',
-                        byline: {
-                            original: 'By Paul Darragh'
-                        },
-                        multimedia: [
-                            {
-                                url: 'images/2017/07/29/world/28venezuela-embassy-1/28venezuela-embassy-1-articleLarge.jpg'
-                            },
-                        ],
+            articles: [
+                {
+                    headline: {
+                        main: 'New game of thrones spoiler!'
                     },
-                    {
-                        headline: {
-                            main: 'New game of thrones spoiler!'
-                        },
-                        pub_date: "2017-07-26T23:55:18+0000",
-                        snippet: "I am just kidding that would be cruel and unusual, " +
-                        "but I am certainly looking forward to the next few episodes!",
-                        web_url: 'http://www.somewebsite.com/articles/a-cool-article',
-                        byline: {
-                            original: 'By Paul Darragh'
-                        },
-                        multimedia: [
-                            {
-                                url: 'images/2017/07/29/world/28venezuela-embassy-1/28venezuela-embassy-1-articleLarge.jpg'
-                            },
-                        ],
+                    pub_date: '2017-07-26T23:55:18+0000',
+                    snippet: 'I am just kidding that would be cruel and unusual, ' +
+                    'but I am certainly looking forward to the next few episodes!',
+                    web_url: 'http://www.somewebsite.com/articles/a-cool-article',
+                    byline: {
+                        original: 'By Paul Darragh'
                     },
-                    {
-                        headline: {
-                            main: 'New game of thrones spoiler!'
+                    multimedia: [
+                        {
+                            url: 'images/2017/07/29/world/28venezuela-embassy-1/28venezuela-embassy-1-articleLarge.jpg'
                         },
-                        pub_date: "2017-07-26T23:55:18+0000",
-                        snippet: "I am just kidding that would be cruel and unusual, " +
-                        "but I am certainly looking forward to the next few episodes!",
-                        web_url: 'http://www.somewebsite.com/articles/a-cool-article',
-                        byline: {
-                            original: 'By Paul Darragh'
-                        },
-                        multimedia: [
-                            {
-                                url: 'images/2017/07/29/world/28venezuela-embassy-1/28venezuela-embassy-1-articleLarge.jpg'
-                            },
-                        ],
+                    ],
+                },
+                {
+                    headline: {
+                        main: 'New game of thrones spoiler!'
                     },
-                ],
-
+                    pub_date: '2017-07-26T23:55:18+0000',
+                    snippet: 'I am just kidding that would be cruel and unusual, ' +
+                    'but I am certainly looking forward to the next few episodes!',
+                    web_url: 'http://www.somewebsite.com/articles/a-cool-article',
+                    byline: {
+                        original: 'By Paul Darragh'
+                    },
+                    multimedia: [
+                        {
+                            url: 'images/2017/07/29/world/28venezuela-embassy-1/28venezuela-embassy-1-articleLarge.jpg'
+                        },
+                    ],
+                },
+                {
+                    headline: {
+                        main: 'New game of thrones spoiler!'
+                    },
+                    pub_date: '2017-07-26T23:55:18+0000',
+                    snippet: 'I am just kidding that would be cruel and unusual, ' +
+                    'but I am certainly looking forward to the next few episodes!',
+                    web_url: 'http://www.somewebsite.com/articles/a-cool-article',
+                    byline: {
+                        original: 'By Paul Darragh'
+                    },
+                    multimedia: [
+                        {
+                            url: 'images/2017/07/29/world/28venezuela-embassy-1/28venezuela-embassy-1-articleLarge.jpg'
+                        },
+                    ],
+                },
+            ],
+            page: {
+                pagination: {},
+                fullArticle: {
+                    web_url: '',
+                    isOpen: false
+                }
             },
             nextSetOfArticles: jest.fn(),
             lastSetOfArticles: jest.fn(),
             toggleFullArticle: jest.fn(),
         };
 
-        wrapper = shallow(<Articles { ...props } />);
+        wrapper = shallow(<Articles { ...props } />);        
     });
 
     it('should only have 3 articles', () => {

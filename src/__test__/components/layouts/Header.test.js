@@ -10,8 +10,9 @@ describe('Header', () => {
 
     beforeEach(() => {
         props = {
+            pages: ['A', 'B', 'C'],
             currentPage: 'Home',
-            changeArticles: jest.fn(),
+            changeSection: jest.fn(),
             searchInput: jest.fn(),
         };
 
@@ -31,9 +32,9 @@ describe('Header', () => {
     });
 
     it('should have six nav links', () => {
-        const navs = wrapper.find('NavLink');
+        const navs = wrapper.find('HeaderSection');
 
-        expect(navs.length).toBe(6);
+        expect(navs.length).toBe(3);
     });
 
     it('should have the time as a title', () => {
@@ -46,11 +47,5 @@ describe('Header', () => {
         const navs = wrapper.find('SearchField');
 
         expect(navs.length).toBe(1);
-    });
-
-    it('should click the more link', () => {
-        wrapper.find('NavLink').last().simulate('click');
-
-        expect(props.changeArticles).toHaveBeenCalledWith({ pageName: 'More' });
     });
 });

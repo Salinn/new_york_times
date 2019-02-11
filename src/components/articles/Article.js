@@ -8,7 +8,7 @@ import { Col, Card, Row, Button, Media, } from 'reactstrap';
 import '../../assets/stylesheets/articles.css'
 import notAvailable from '../../assets/images/not-available.jpg';
 
-const getImage = ({ multimedia }) => {
+export const getImage = ({ multimedia }) => {
     if(multimedia.length > 0){
         return `http://www.nytimes.com/${multimedia[0].url}`;
     }else {
@@ -16,7 +16,9 @@ const getImage = ({ multimedia }) => {
     }
 };
 
-const Article = ({ article, toggle }) => {
+const Article = (props) => {
+    const { article, toggle } = props
+
     const image = getImage({ multimedia: article.multimedia });
     const title = article.headline.main;
     const preview = article.snippet;

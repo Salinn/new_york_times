@@ -12,7 +12,11 @@ describe('Pagination Buttons', () => {
         props = {
             nextSetOfArticles: jest.fn(),
             lastSetOfArticles: jest.fn(),
-            currentPage: 2
+            pagination: {
+                current: 2,
+                min: 0,
+                max: 120
+            }
         };
 
         wrapper = shallow(<PaginationButtons { ...props } />);

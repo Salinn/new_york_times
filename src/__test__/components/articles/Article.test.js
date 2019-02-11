@@ -16,7 +16,7 @@ describe('Article', () => {
                 },
                 pub_date: "2017-07-26T23:55:18+0000",
                 snippet: "I am just kidding that would be cruel and unusual, " +
-                         "but I am certainly looking forward to the next few episodes!",
+                        "but I am certainly looking forward to the next few episodes!",
                 web_url: 'http://www.somewebsite.com/articles/a-cool-article',
                 byline: {
                     original: 'By Paul Darragh'
