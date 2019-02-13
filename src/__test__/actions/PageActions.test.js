@@ -149,6 +149,11 @@ describe('Page Actions', () => {
 
         const store = mockStore(state);
         const stories = [1, 2, 3];
+        const toast = {
+            id: "1",
+            message: 'We successfully fetched new stories on the Home page!',
+            color: "success"
+        }
 
         mock.onGet(MORE_ARTICLE_ENDPOINT + getParams({ searchFields })).reply(200, {
             response: {
@@ -159,7 +164,8 @@ describe('Page Actions', () => {
         const expectedDispatchedActions = [
             { type: types.CHANGE_PAGE, pageName: 'More' },
             { type: types.FETCH_ARTICLES_STARTED },
-            { type: types.FETCH_ARTICLES_SUCCESS, stories }
+            { type: types.FETCH_ARTICLES_SUCCESS, stories },
+            { type: types.CREATE_TOAST, toast }
         ];
 
         await store.dispatch(actions.searchInput({ searchTerm: 'Patriots' }));
@@ -182,7 +188,6 @@ describe('Page Actions', () => {
         const expectedDispatchedActions = [
             { type: types.CHANGE_PAGE, pageName: 'World' },
             { type: types.FETCH_ARTICLES_STARTED },
-            { type: types.FETCH_ARTICLES_SUCCESS, stories }
         ];
 
         await store.dispatch(actions.changeSection({ pageName: 'World' }));
@@ -195,6 +200,11 @@ describe('Page Actions', () => {
         const store = mockStore(initialState);
         const stories = [1, 2, 3];
         const searchFields = { q: '', 'api-key': initialState.meta.apiKey }
+        const toast = {
+            id: "3",
+            message: 'We successfully fetched new stories on the Home page!',
+            color: "success"
+        }
 
         mock.onGet(MORE_ARTICLE_ENDPOINT + getParams({ searchFields })).reply(200, {
             response: {
@@ -205,7 +215,8 @@ describe('Page Actions', () => {
         const expectedDispatchedActions = [
             { type: types.CHANGE_PAGE, pageName: 'More' },
             { type: types.FETCH_ARTICLES_STARTED },
-            { type: types.FETCH_ARTICLES_SUCCESS, stories }
+            { type: types.FETCH_ARTICLES_SUCCESS, stories },
+            { type: types.CREATE_TOAST, toast }
         ];
 
         await store.dispatch(actions.searchInput({ searchFields }));

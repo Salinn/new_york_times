@@ -5,6 +5,7 @@ import { array, func } from 'prop-types';
 import Header from '../containers/Header';
 import Articles from '../containers/Articles';
 import Footer from '../containers/Footer';
+import ToastContainer from '../containers/Toasts'
 import { Container, Row, Col } from 'reactstrap';
 
 const App = () => {
@@ -13,6 +14,9 @@ const App = () => {
             <Header />
             <Container>
                 <Row>
+                    <Col xs={ 12 } md={{size:8, offset: 2}} >
+                        <ToastContainer />
+                    </Col>
                     <Col xs={ 12 }>
                         <Articles />
                     </Col>
