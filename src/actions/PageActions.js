@@ -30,6 +30,7 @@ export const changeSection = (props) => async dispatch => {
 };
 
 export const searchInput = (props) => async dispatch => {
+    console.log('props123321:', props)
     const { searchTerm='' } = props
 
     await dispatch(changePage({ pageName: 'More', searchTerm }));

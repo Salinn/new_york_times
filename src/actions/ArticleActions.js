@@ -6,6 +6,7 @@ import {
 } from './ActionTypes';
 //Article API
 import * as ArticleAPI from '../utils/api/ArticleAPI';
+import { createToast } from './ToastsActions'
 
 export const fetchArticles = (props) => async (dispatch, getState) => {
     const {
@@ -29,6 +30,7 @@ export const fetchArticles = (props) => async (dispatch, getState) => {
             type: FETCH_ARTICLES_SUCCESS, 
             stories: payload.data.response.docs 
         })
+        dispatch(createToast({ message: `I successfully fetched new article from ${currentPage}!`, color: 'success'}))
     } catch (error) {
         dispatch({ type: FETCH_ARTICLES_FAILED });
     }

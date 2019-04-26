@@ -54,7 +54,7 @@ describe('Page Actions', () => {
                 }
             }
         }
-        
+
         const store = mockStore(state);
 
         const expectedDispatchedActions = [
@@ -68,7 +68,7 @@ describe('Page Actions', () => {
     });
 
     it('should change to the next page when the page is past what the api allows', async () => {
-        const state = { 
+        const state = {
             ...initialState,
             page: {
                 ...initialState.page,
@@ -159,7 +159,7 @@ describe('Page Actions', () => {
         const expectedDispatchedActions = [
             { type: types.CHANGE_PAGE, pageName: 'More' },
             { type: types.FETCH_ARTICLES_STARTED },
-            { type: types.FETCH_ARTICLES_SUCCESS, stories }
+            { type: types.FETCH_ARTICLES_SUCCESS, stories },
         ];
 
         await store.dispatch(actions.searchInput({ searchTerm: 'Patriots' }));
@@ -182,7 +182,6 @@ describe('Page Actions', () => {
         const expectedDispatchedActions = [
             { type: types.CHANGE_PAGE, pageName: 'World' },
             { type: types.FETCH_ARTICLES_STARTED },
-            { type: types.FETCH_ARTICLES_SUCCESS, stories }
         ];
 
         await store.dispatch(actions.changeSection({ pageName: 'World' }));
@@ -205,7 +204,7 @@ describe('Page Actions', () => {
         const expectedDispatchedActions = [
             { type: types.CHANGE_PAGE, pageName: 'More' },
             { type: types.FETCH_ARTICLES_STARTED },
-            { type: types.FETCH_ARTICLES_SUCCESS, stories }
+            { type: types.FETCH_ARTICLES_SUCCESS, stories },
         ];
 
         await store.dispatch(actions.searchInput({ searchFields }));

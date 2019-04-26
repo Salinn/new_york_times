@@ -17,5 +17,6 @@ export default {
         searchTerm: '',
         currentPage: 'Home',
     },
-    sections: ['Home', 'World', 'U.S.', 'Politics', 'N.Y.', 'More']
+    sections: ['Home', 'World', 'U.S.', 'Politics', 'N.Y.', 'More'],
+    toasts: []
 }

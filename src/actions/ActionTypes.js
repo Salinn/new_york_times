@@ -8,3 +8,7 @@ export const SET_PAGE = 'SET_PAGE';
 export const TOGGLE_FULL_ARTICLE = 'TOGGLE_FULL_ARTICLE';
 export const INPUT_CHANGED = 'INPUT_CHANGED';
 export const CHANGE_PAGE = 'CHANGE_PAGE';
+
+//Toasts
+export const CREATE_TOAST = 'CREATE_TOAST'
+export const REMOVE_TOAST = 'REMOVE_TOAST'

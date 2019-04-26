@@ -1,11 +1,15 @@
 //React
 import React from 'react';
 import { array, func } from 'prop-types';
+import { Container, Row, Col } from 'reactstrap';
 //Container
 import Header from '../containers/Header';
 import Articles from '../containers/Articles';
 import Footer from '../containers/Footer';
-import { Container, Row, Col } from 'reactstrap';
+import Toasts from '../containers/Toasts';
+import '@vaadin/vaadin-button';
+import '@vaadin/vaadin-grid';
+import '@vaadin/vaadin-text-field';
 
 const App = () => {
     return (
@@ -14,6 +18,7 @@ const App = () => {
             <Container>
                 <Row>
                     <Col xs={ 12 }>
+                        <Toasts />
                         <Articles />
                     </Col>
                 </Row>
