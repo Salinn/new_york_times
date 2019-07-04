@@ -1,81 +1,85 @@
 {
-    "name": "new_york_times",
-    "version": "0.1.0",
-    "private": true,
-    "dependencies": {
-        "@vaadin/vaadin-button": "^2.1.3",
-        "@vaadin/vaadin-grid": "^5.3.3",
-        "@vaadin/vaadin-text-field": "^2.3.4",
-        "@webcomponents/webcomponentsjs": "^2.2.7",
-        "axios": "^0.16.2",
-        "bootstrap": "4.0.0-alpha.6",
-        "component-calc-life": "^2.0.79",
-        "express": "^4.16.4",
-        "lodash": "^4.17.11",
-        "moment": "^2.23.0",
-        "morgan": "^1.9.1",
-        "prop-types": "^15.6.2",
-        "react": "^15.6.2",
-        "react-addons-css-transition-group": "^15.6.2",
-        "react-addons-transition-group": "^15.6.2",
-        "react-dom": "^15.6.2",
-        "react-icons": "^2.2.7",
-        "react-redux": "^5.1.1",
-        "reactstrap": "^4.8.0",
-        "redux": "^3.7.2",
-        "redux-devtools-extension": "^2.13.7",
-        "redux-thunk": "^2.3.0",
-        "vendor-copy": "^2.0.0"
+  "name": "new_york_times",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@vaadin/vaadin-button": "^2.1.3",
+    "@vaadin/vaadin-grid": "^5.3.3",
+    "@vaadin/vaadin-text-field": "^2.3.4",
+    "@webcomponents/webcomponentsjs": "^2.2.7",
+    "axios": "^0.16.2",
+    "bootstrap": "4.0.0-alpha.6",
+    "component-calc-life": "^2.0.79",
+    "express": "^4.16.4",
+    "lodash": "^4.17.11",
+    "moment": "^2.23.0",
+    "morgan": "^1.9.1",
+    "prop-types": "^15.6.2",
+    "react": "^15.6.2",
+    "react-addons-css-transition-group": "^15.6.2",
+    "react-addons-transition-group": "^15.6.2",
+    "react-dom": "^15.6.2",
+    "react-icons": "^2.2.7",
+    "react-redux": "^5.1.1",
+    "reactstrap": "^4.8.0",
+    "redux": "^3.7.2",
+    "redux-devtools-extension": "^2.13.7",
+    "redux-thunk": "^2.3.0",
+    "vendor-copy": "^2.0.0",
+    "snyk": "^1.189.0"
+  },
+  "devDependencies": {
+    "axios-mock-adapter": "^1.16.0",
+    "enzyme": "^2.9.1",
+    "faker": "^4.1.0",
+    "react-scripts": "1.0.10",
+    "react-test-renderer": "^15.6.2",
+    "redux-mock-store": "^1.5.3"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject",
+    "postinstall": "vendor-copy",
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect"
+  },
+  "vendorCopy": [
+    {
+      "from": "node_modules/@webcomponents/webcomponentsjs/custom-elements-es5-adapter.js",
+      "to": "public/vendor/custom-elements-es5-adapter.js"
     },
-    "devDependencies": {
-        "axios-mock-adapter": "^1.16.0",
-        "enzyme": "^2.9.1",
-        "faker": "^4.1.0",
-        "react-scripts": "1.0.10",
-        "react-test-renderer": "^15.6.2",
-        "redux-mock-store": "^1.5.3"
-    },
-    "scripts": {
-        "start": "react-scripts start",
-        "build": "react-scripts build",
-        "test": "react-scripts test --env=jsdom",
-        "eject": "react-scripts eject",
-        "postinstall": "vendor-copy"
-    },
-    "vendorCopy": [
-        {
-            "from": "node_modules/@webcomponents/webcomponentsjs/custom-elements-es5-adapter.js",
-            "to": "public/vendor/custom-elements-es5-adapter.js"
-        },
-        {
-            "from": "node_modules/@webcomponents/webcomponentsjs/webcomponents-bundle.js",
-            "to": "public/vendor/webcomponents-bundle.js"
-        }
-    ],
-    "jest": {
-        "collectCoverageFrom": [
-            "**/*.js",
-            "!**/node_modules/**",
-            "!**/api/**",
-            "!**/assets/**",
-            "!**/build/**",
-            "!**/coverage/**",
-            "!**/store/**",
-            "!**/vendor/**",
-            "!**/index.js",
-            "!**/initialState.js",
-            "!**/ActionTypes.js",
-            "!**/index.js",
-            "!**/registerServiceWorker.js",
-            "!**/initialState.js"
-        ],
-        "coverageThreshold": {
-            "global": {
-                "branches": 90,
-                "functions": 90,
-                "lines": 90,
-                "statements": 90
-            }
-        }
+    {
+      "from": "node_modules/@webcomponents/webcomponentsjs/webcomponents-bundle.js",
+      "to": "public/vendor/webcomponents-bundle.js"
     }
+  ],
+  "jest": {
+    "collectCoverageFrom": [
+      "**/*.js",
+      "!**/node_modules/**",
+      "!**/api/**",
+      "!**/assets/**",
+      "!**/build/**",
+      "!**/coverage/**",
+      "!**/store/**",
+      "!**/vendor/**",
+      "!**/index.js",
+      "!**/initialState.js",
+      "!**/ActionTypes.js",
+      "!**/index.js",
+      "!**/registerServiceWorker.js",
+      "!**/initialState.js"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "branches": 90,
+        "functions": 90,
+        "lines": 90,
+        "statements": 90
+      }
+    }
+  },
+  "snyk": true
 }
