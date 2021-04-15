@@ -25,7 +25,7 @@
         "redux": "^3.7.2",
         "redux-devtools-extension": "^2.13.7",
         "redux-thunk": "^2.3.0",
-        "vendor-copy": "^2.0.0"
+        "vendor-copy": "^3.0.1"
     },
     "devDependencies": {
         "axios-mock-adapter": "^1.16.0",
